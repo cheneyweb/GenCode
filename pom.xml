@@ -5,7 +5,8 @@
 	<groupId>com.cheney.web</groupId>
 	<artifactId>GenCode</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<!-- <packaging>jar</packaging> -->
+	<packaging>war</packaging>
 
 	<name>GenCode</name>
 	<url>http://maven.apache.org</url>
@@ -34,6 +35,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- SpringBoot框架 部署到Tomcat使用 -->
+		<!-- <dependency>
+        	<groupId>org.springframework.boot</groupId>  
+        	<artifactId>spring-boot-starter-tomcat</artifactId>  
+        	<scope>provided</scope>
+    	</dependency> -->
 		<!-- Velocity模板 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
