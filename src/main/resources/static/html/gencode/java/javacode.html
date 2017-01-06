@@ -1,0 +1,98 @@
+<div id="javacode">
+    <h1 class="page-header">{{title}}</h1>
+    <div class="input-group col-lg-6">
+        <div class="input-group-addon">Prefix</div>
+        <input class="form-control" type="text" placeholder="Example: input 'User' if you want 'UserDao'" v-model="query.prefix">
+    </div>
+    <br/>
+     <br/>
+    <div class="col-lg-12">
+        <button id="addMethod" type="button" class="btn btn-default" @click="addMethod()">Add Method</button>
+        <button id="genCode" type="button" class="btn btn-default" @click="genCode">Gen Code</button>
+        <button id="exportCode" type="button" class="btn btn-default">Export Code</button>
+    </div>
+    <br/>
+    <br/>
+    <div class="col-lg-12">
+    	<textarea class="form-control" id="myTextarea" v-model="query.xml"></textarea>
+    </div>
+    <br/>
+    <div class="col-lg-6">
+        <pre id="codeLeft" class="prettyprint">
+		</pre>
+    </div>
+    <div class="col-lg-6">
+        <pre id="codeRight" class="prettyprint">
+		</pre>
+    </div>
+</div>
+<script>
+Vue.http.options.emulateJSON = true;
+$(function() {
+    new Vue({
+        el: '#javacode',
+        data: {
+            genUrl: '/gencode/java/genservice.json',
+            title: 'Service',
+            query: {
+                prefix: '',
+                xml: ''
+            },
+            codeLeft: '',
+            codeRight:'',
+            // 返回信息
+            respMsg: ''
+        },
+        methods: {
+            genCode: function() {
+                var vm = this
+                // 设置XML
+                vm.query.xml = editor.getValue()
+                vm.$http.post(vm.genUrl, vm.query)
+                    .then((sucResp) => {
+                        vm.codeLeft = sucResp.data.interfaceCode
+                        vm.codeRight = sucResp.data.implCode
+                        cmLeft.setValue(vm.codeLeft)
+                        cmLeft.setSize('auto', 'auto')
+                        cmRight.setValue(vm.codeRight)
+                        cmRight.setSize('auto', 'auto')
+                    }, (errResp) => {
+                        vm.respMsg = errResp.data
+                    });
+            },
+            addMethod: function(){
+            	var str = editor.getValue() + defaultstr
+                editor.setValue(str)
+            }
+        }
+    });
+    // 加载高亮代码编辑器
+    var editor = CodeMirror.fromTextArea(myTextarea, {
+        mode: "xml",
+        lineWrapping: "true",
+        smartIndent: false,
+        lineNumbers: true
+    });
+    var defaultstr = '<method returnType="int" inParamTypes="String" inParams="name">methodName</method>' + '\n';
+    if (editor.getValue() == '') {
+        editor.setValue(defaultstr);
+    }
+    
+ 	// 左侧区域代码编辑框
+    var cmLeft = CodeMirror(codeLeft, {
+	    mode: "text/x-java",
+	    lineWrapping: true,
+	    htmlMode: true,
+	    smartIndent: false,
+	    lineNumbers: true
+	});
+ 	// 右区域代码编辑框
+    var cmRight = CodeMirror(codeRight, {
+	    mode: "text/x-java",
+	    lineWrapping: true,
+	    htmlMode: true,
+	    smartIndent: false,
+	    lineNumbers: true
+	});
+});
+</script>

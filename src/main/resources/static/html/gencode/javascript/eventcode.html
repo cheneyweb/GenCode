@@ -1,0 +1,73 @@
+<div id="eventcode">
+	<h1 class="page-header">{{title}}</h1>
+	<div>
+		<div class="col-sm-2">
+			<select class="form-control" v-model="query.selectedType" @change="genCode">
+	            <option v-for="type in types" :value="type">{{type}}</option>
+	        </select>
+		</div>
+		<button id="exportCode" type="button" class="btn btn-default">Export Code</button>
+	</div>		
+	<div class="col-lg-6">
+		<pre id="codeLeft" class="prettyprint">
+		</pre>
+	</div>
+	<div class="col-lg-6">
+		<pre id="codeRight" class="prettyprint">
+		</pre>
+	</div>
+</div>
+
+
+<script>
+Vue.http.options.emulateJSON = true;
+$(function() {
+    new Vue({
+        el: '#eventcode',
+        data: {
+            genUrl: '/gencode/javascript/genevent.json',
+            title: 'Event',
+            types:['click','change','focus','blur','submit'],
+            query:{
+            	selectedType:''
+            },
+            codeLeft: '',
+            codeRight:'',
+            // 返回信息
+            respMsg: ''
+        },
+        methods: {
+            genCode: function() {
+                var vm = this
+                vm.$http.post(vm.genUrl,vm.query)
+                    .then((sucResp) => {
+                    	vm.codeLeft = sucResp.data.jqueryAjaxCode
+                        vm.codeRight = sucResp.data.javaScriptAjaxCode
+                        cmLeft.setValue(vm.codeLeft)
+                        cmLeft.setSize('auto', 'auto')
+                        cmRight.setValue(vm.codeRight)
+                        cmRight.setSize('auto', 'auto')
+                    }, (errResp) => {
+                        vm.respMsg = errResp.data
+                    });
+            }
+        }
+    });
+ 	// 左侧区域代码编辑框
+    var cmLeft = CodeMirror(codeLeft, {
+	    mode: "javascript",
+	    lineWrapping: true,
+	    htmlMode: true,
+	    smartIndent: false,
+	    lineNumbers: true
+	}); 
+ 	// 右侧区域代码编辑框
+    var cmRight = CodeMirror(codeRight, {
+	    mode: "javascript",
+	    lineWrapping: true,
+	    htmlMode: true,
+	    smartIndent: false,
+	    lineNumbers: true
+	}); 
+});
+</script>

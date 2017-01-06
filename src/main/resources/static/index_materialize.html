@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- 引入VUE -->
+    <script src="/frame/vue/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <mt-navbar v-model="selected">
+            <mt-tab-item id="1">选项一</mt-tab-item>
+            <mt-tab-item id="2">选项二</mt-tab-item>
+            <mt-tab-item id="3">选项三</mt-tab-item>
+        </mt-navbar>
+
+        <!-- tab-container -->
+        <mt-tab-container v-model="selected">
+            <mt-tab-container-item id="1">
+                <mt-cell v-for="n in 10" :title="'内容 ' + n" />
+            </mt-tab-container-item>
+            <mt-tab-container-item id="2">
+                <mt-cell v-for="n in 10" :title="'测试 ' + n" />
+            </mt-tab-container-item>
+            <mt-tab-container-item id="3">
+                <mt-cell v-for="n in 10" :title="'选项 ' + n" />
+            </mt-tab-container-item>
+        </mt-tab-container>
+
+        <mt-tabbar v-model="selected">
+            <mt-tab-item id="前端代码">
+                <i slot="icon" class="material-icons">explore</i>前端代码
+            </mt-tab-item>
+            <mt-tab-item id="后端代码">
+                <i slot="icon" class="material-icons">cloud</i>后端代码
+            </mt-tab-item>
+            <mt-tab-item id="运维代码">
+                <i slot="icon" class="material-icons">devices</i>运维代码
+            </mt-tab-item>
+            <mt-tab-item id="基础设置">
+                <i slot="icon" class="material-icons">settings</i>基础设置
+            </mt-tab-item>
+        </mt-tabbar>
+    </div>
+    <script>
+    new Vue({
+        el: '#app',
+        data: {
+            selected: ''
+        },
+        methods: {
+            handleClick: function() {
+                this.$toast('Hello world!')
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>

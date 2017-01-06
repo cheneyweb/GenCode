@@ -1,0 +1,63 @@
+<div id="matchcode">
+	<h1 class="page-header">{{title}}</h1>
+    <br/>
+	<div>
+		<div class="col-lg-2">
+			<select class="form-control" v-model="query.selectedType" @change="genCode">
+	            <option v-for="type in types" :value="type">{{type}}</option>
+	        </select>
+		</div>
+		<button id="exportCode" type="button" class="btn btn-default">Export Code</button>
+	</div>			
+	<div class="col-lg-6">
+		<pre id="codeLeft" class="prettyprint">
+		</pre>
+	</div>
+	<div class="col-lg-6">
+		<pre id="codeRight" class="prettyprint">
+		</pre>
+	</div>
+</div>
+
+
+<script>
+Vue.http.options.emulateJSON = true;
+$(function() {
+    new Vue({
+        el: '#matchcode',
+        data: {
+            genUrl: '/gencode/regex/genmatch.json',
+            title: 'Match',
+            types:['variable','number','decimal','date','time','other'],
+            query:{
+            	selectedType:''
+            },
+            codeLeft: '',
+            codeRight:'',
+            // 返回信息
+            respMsg: ''
+        },
+        methods: {
+            genCode: function() {
+                var vm = this
+                vm.$http.post(vm.genUrl,vm.query)
+                    .then((sucResp) => {
+                    	vm.codeLeft = sucResp.data.code
+                        cmLeft.setValue(vm.codeLeft)
+                        cmLeft.setSize('auto', 'auto')
+                    }, (errResp) => {
+                        vm.respMsg = errResp.data
+                    });
+            }
+        }
+    });
+	// 左侧区域代码编辑框
+    var cmLeft = CodeMirror(codeLeft, {
+	    mode: "shell",
+	    lineWrapping: true,
+	    htmlMode: true,
+	    smartIndent: false,
+	    lineNumbers: true
+	});
+});
+</script>

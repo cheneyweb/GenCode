@@ -1,0 +1,78 @@
+#set($header='gencode')
+#set($left='background')
+<!DOCTYPE html>
+<html>
+<style>
+body {
+    padding-top: 50px;
+}
+.sidebar {
+    height: 0px;
+    padding-bottom: 100%;
+}
+#sticky-sidebar {
+    position: fixed;
+}
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>GenCode</title>
+    #parse("layout/common/header.html")
+</head>
+
+<body>
+    #parse("layout/common/nav.html")
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 sidebar bg-faded">
+                #parse("layout/common/left.html")
+            </div>
+            <div id="content" class="col-md-10 main">
+            	<div class="row">
+                    <div class="col-md-4">
+                        <div class="card card-block">
+                            <h4 class="card-title">Java 实体代码</h4>
+                            <p class="card-text">根据创建表的SQL语句生成Java相关的实体代码</p>
+                            <a href="#" class="btn btn-primary">去看看</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-block">
+                            <h4 class="card-title">Java Dao层代码</h4>
+                            <p class="card-text">生成Mybatis相关的Dao代码</p>
+                            <a href="#" class="btn btn-primary">去看看</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-block">
+                            <h4 class="card-title">Java Service代码</h4>
+                            <p class="card-text">生成Java相关的业务层代码</p>
+                            <a href="#" class="btn btn-primary">去看看</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                	<div class="col-md-4">
+                        <div class="card card-block">
+                            <h4 class="card-title">SQL 查询代码</h4>
+                            <p class="card-text">生成SQL相关的查询代码</p>
+                            <a href="#" class="btn btn-primary">去看看</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-block">
+                            <h4 class="card-title">SQL 变更代码</h4>
+                            <p class="card-text">生成SQL相关的变更代码</p>
+                            <a href="#" class="btn btn-primary">去看看</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

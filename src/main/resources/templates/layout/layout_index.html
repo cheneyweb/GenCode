@@ -1,0 +1,63 @@
+#set($header='index') #set($left='index')
+<!DOCTYPE html>
+<html>
+<style>
+body {
+    padding-top: 50px;
+}
+
+.sidebar {
+    height: 0px;
+    padding-bottom: 100%;
+}
+
+#sticky-sidebar {
+    position: fixed;
+}
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>GenCode</title>
+    #parse("layout/common/header.html")
+</head>
+
+<body>
+    #parse("layout/common/nav.html")
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 sidebar bg-faded">
+                #parse("layout/common/left.html")
+            </div>
+            <div id="content" class="col-md-10 main">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card card-block">
+                            <h4 class="card-title">全局系统配置</h4>
+                            <p class="card-text">配置基础代码署名和基础包名等</p>
+                            <a href="#" class="btn btn-primary">去看看</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-block">
+                            <h4 class="card-title">生成代码基础配置</h4>
+                            <p class="card-text">配置代码生成</p>
+                            <a href="#" class="btn btn-primary">去看看</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-block">
+                            <h4 class="card-title">留言建议</h4>
+                            <p class="card-text">如若能给予建议和支持，十分感谢！</p>
+                            <a href="#" class="btn btn-primary">点我给建议</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

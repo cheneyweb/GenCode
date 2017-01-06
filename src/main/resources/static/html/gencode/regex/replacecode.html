@@ -1,0 +1,61 @@
+<div id="replacecode">
+	<h1 class="page-header">{{type}}</h1>
+	<div>
+		<div class="col-lg-2">
+		<select id="gencode" class="form-control" @change="genCode">
+			<option value=""></option>
+			<option value="">Select Event</option>
+		</select>
+		</div>
+		<button id="exportCode" type="button" class="btn btn-default">Export Code</button>
+	</div>
+	<div class="col-lg-6">
+		<pre id="codeLeft" class="prettyprint">
+		</pre>
+	</div>				
+	<div class="col-lg-6">
+		<pre id="codeRight" class="prettyprint">
+		</pre>
+	</div>
+</div>
+
+
+<script>
+Vue.http.options.emulateJSON = true;
+$(function() {
+    new Vue({
+        el: '#replacecode',
+        data: {
+            genUrl: '/gencode/regex/genreplace.json',
+            type: 'Replace',
+            query:{
+            	selectedType:''
+            },
+            code: '',
+            // 返回信息
+            respMsg: ''
+        },
+        methods: {
+            genCode: function() {
+                var vm = this
+                vm.$http.post(vm.genUrl,vm.query)
+                    .then((sucResp) => {
+                    	vm.codeLeft = sucResp.data.code
+                        cmLeft.setValue(vm.codeLeft)
+                        cmLeft.setSize('auto', 'auto')
+                    }, (errResp) => {
+                        vm.respMsg = errResp.data
+                    });
+            }
+        }
+    });
+ 	// 左侧区域代码编辑框
+    var cmLeft = CodeMirror(codeLeft, {
+	    mode: "shell",
+	    lineWrapping: true,
+	    htmlMode: true,
+	    smartIndent: false,
+	    lineNumbers: true
+	});
+});
+</script>

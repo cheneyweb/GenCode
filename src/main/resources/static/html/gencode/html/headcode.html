@@ -1,0 +1,46 @@
+<div id="headcode">
+	<h1 class="page-header">{{title}}</h1>
+	<div class="col-lg-12">
+	    <button type="button" class="btn btn-default" @click="genCode">Gen HeadCode</button>
+	    <button type="button" class="btn btn-default">Export Code</button>
+	</div>
+	<div  class="col-lg-6">
+	    <pre id="codeLeft" class="prettyprint">
+	    </pre>
+	</div>
+</div>
+<script>
+$(function() {
+    new Vue({
+        el: '#headcode',
+        data: {
+            genUrl: '/gencode/html/genhead.json',
+            title:'Html',
+            codeLeft:'',
+           	// 返回信息
+            respMsg: ''
+        },
+        methods: {
+        	genCode:function(){
+        		var vm = this
+        		vm.$http.post(vm.genUrl)
+                .then((sucResp) => {
+                    vm.codeLeft = sucResp.data.htmlHeadCode
+                  	cmLeft.setValue(vm.codeLeft)
+                    cmLeft.setSize('auto', 'auto')
+                }, (errResp) => {
+                    vm.respMsg = errResp.data
+                });
+        	}
+        }
+    });
+    // 左侧区域代码编辑框
+    var cmLeft = CodeMirror(codeLeft, {
+	    mode: "xml",
+	    lineWrapping: true,
+	    htmlMode: true,
+	    smartIndent: false,
+	    lineNumbers: true
+	}); 
+});
+</script>

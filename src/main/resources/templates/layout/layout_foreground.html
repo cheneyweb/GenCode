@@ -1,0 +1,71 @@
+#set($header='gencode')
+#set($left='foreground')
+<!DOCTYPE html>
+<html>
+<style>
+body {
+    padding-top: 50px;
+}
+.sidebar {
+    height: 0px;
+    padding-bottom: 100%;
+}
+#sticky-sidebar {
+    position: fixed;
+}
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>GenCode</title>
+    #parse("layout/common/header.html")
+</head>
+
+<body>
+    #parse("layout/common/nav.html")
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 sidebar bg-faded">
+                #parse("layout/common/left.html")
+            </div>
+            <div id="content" class="col-md-10 main">
+            	<div class="row">
+                    <div class="col-md-4">
+                        <div class="card card-block">
+                            <h4 class="card-title">Html 基础代码</h4>
+                            <p class="card-text">生成HTML的基础代码</p>
+                            <a href="#" class="btn btn-primary">去看看</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-block">
+                            <h4 class="card-title">Html 表单代码</h4>
+                            <p class="card-text">生成Html相关的表单控件代码</p>
+                            <a href="#" class="btn btn-primary">去看看</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-block">
+                            <h4 class="card-title">JS Ajax代码</h4>
+                            <p class="card-text">生产Ajax相关代码</p>
+                            <a href="#" class="btn btn-primary">去看看</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                	<div class="col-md-4">
+                        <div class="card card-block">
+                            <h4 class="card-title">JS Event代码</h4>
+                            <p class="card-text">生成JS相关的事件代码</p>
+                            <a href="#" class="btn btn-primary">去看看</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
