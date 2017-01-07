@@ -1,10 +1,10 @@
-package com.cheney.gencode.gen.common;
+package com.cheney.gencode.gen.java.common;
 
 import java.util.List;
 import java.util.Map;
 
-import com.cheney.gencode.gen.comment.GenMethodComment;
-import com.cheney.gencode.module.GlobalConfig;
+import com.cheney.gencode.enums.EnumShortcut;
+import com.cheney.gencode.gen.java.comment.GenMethodComment;
 import com.cheney.gencode.module.Method;
 
 /**
@@ -25,14 +25,18 @@ public class GenInterface {
 	 * @param globalConfig
 	 * @return 接口
 	 */
-	public static String getCode(List<Method> methods, GlobalConfig globalConfig) {
+	public static String getCode(Map<String,String> parmMap,List<Method> methods) {
+		// 入参设置
+		String author = parmMap.get("author");
+		
 		String code = "";
 		for (int i = 0; i < methods.size(); i++) {
 			// 生成方法注释
-			String comment = GenMethodComment.gen(methods.get(i).getName(), methods.get(i).getInParamMap(), methods.get(i).getReturnType(), globalConfig.getAuthor());
+			String comment = GenMethodComment.gen(methods.get(i).getName(), methods.get(i).getInParamMap(), methods.get(i).getReturnType(), author);
 			code += comment;
 			// 单位接口
-			code += "\tpublic ";
+			code += EnumShortcut.TAB.getValue();
+			code += "public ";
 			code += methods.get(i).getReturnType();
 			code += " ";
 			code += methods.get(i).getName();
@@ -49,8 +53,7 @@ public class GenInterface {
 				j++;
 			}
 			code += ");";
-			code += "\r\n";
-			code += "\r\n";
+			code += EnumShortcut.NL2.getValue();
 		}
 		return code;
 	}
@@ -75,8 +78,7 @@ public class GenInterface {
 		code += "public interface ";
 		code += serviceInterfaceName;
 		code += "{";
-		code += "\r\n";
-		code += "\r\n";
+		code += EnumShortcut.NL2.getValue();
 		return code;
 	}
 }

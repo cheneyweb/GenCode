@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cheney.gencode.gen.java.GenServiceCode;
-import com.cheney.gencode.gen.module.GenGlobalConfig;
-import com.cheney.gencode.module.GlobalConfig;
 
 /**
  * @Moudle: GenJavaCodeController
@@ -24,12 +22,15 @@ import com.cheney.gencode.module.GlobalConfig;
 public class GenJavaCodeController {
 
 	@RequestMapping(value="/genservice",method=RequestMethod.POST)
-	public Map<String,String> genService(String json, String prefix) {
-		initGlobalConfig(prefix);
+	public Map<String,String> genService(String prefix,String json) {
+		// 入参设置
 		json = json.replaceAll("\\s","");
+		Map<String,String> parmMap = new HashMap<String,String>();
+		parmMap.put("prefix",prefix);
+		parmMap.put("json",json);
 		// 生成接口代码和实现代码
-		String interfaceCode = GenServiceCode.genInterface(json);
-		String implCode = GenServiceCode.genImpl(json);
+		String interfaceCode = GenServiceCode.genInterface(parmMap);
+		String implCode = GenServiceCode.genImpl(parmMap);
 		// 返回数据
 		Map<String,String> codeMap = new HashMap<String,String>();
 		codeMap.put("interfaceCode", interfaceCode);
@@ -42,20 +43,4 @@ public class GenJavaCodeController {
 	public String genDao(String json, String prefix) {
 		return "content/gencode/java/javacode";
 	}
-
-	private void initGlobalConfig(String prefix) {
-		if (GenGlobalConfig.getGlobalConfig() != null) {
-			GenGlobalConfig.getGlobalConfig().setDaoPrefix(prefix);
-			GenGlobalConfig.getGlobalConfig().setManagerPrefix(prefix);
-			GenGlobalConfig.getGlobalConfig().setServicePrefix(prefix);
-		} else {
-			GlobalConfig globalConfig = new GlobalConfig();
-			globalConfig.setServicePrefix(prefix);
-			globalConfig.setManagerPrefix(prefix);
-			globalConfig.setDaoPrefix(prefix);
-			GenGlobalConfig.setGlobalConfig(globalConfig);
-		}
-	}
-
-	
 }

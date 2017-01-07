@@ -6,7 +6,7 @@
  * @date: 2014年10月21日 下午2:55:47
  * @version: V1.0
  */
-package com.cheney.gencode.gen.module;
+package com.cheney.gencode.gen.java.module;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

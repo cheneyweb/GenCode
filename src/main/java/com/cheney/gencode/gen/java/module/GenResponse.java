@@ -1,3 +1,4 @@
+package com.cheney.gencode.gen.java.module;
 /*package com.cheney.gencode.gen.module;
 
 import java.util.LinkedList;

@@ -8,11 +8,6 @@
  */
 package com.cheney.gencode.gen.java;
 
-import com.cheney.gencode.gen.common.GenImplCode;
-import com.cheney.gencode.gen.common.GenInterfaceCode;
-import com.cheney.gencode.gen.module.GenDao;
-import com.cheney.gencode.module.Dao;
-
 /**
  * @Moudle: GenDaoCode
  * @version:v1.0
@@ -33,8 +28,8 @@ public class GenDaoCode {
 	public static String genInterface(String json) {
 		String code = null;
 		try {
-			Dao dao = GenDao.getDao(json);
-			code = GenInterfaceCode.gen("Dao", dao.getMethods());
+//			Dao dao = GenDao.getDao(json);
+//			code = GenInterfaceCode.gen("Dao", dao.getMethods());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,8 +46,8 @@ public class GenDaoCode {
 	public static String genImpl(String json) {
 		String code = null;
 		try {
-			Dao dao = GenDao.getDao(json);
-			code = GenImplCode.gen("Dao", dao.getMethods());
+//			Dao dao = GenDao.getDao(json);
+//			code = GenImplCode.gen("Dao", dao.getMethods());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

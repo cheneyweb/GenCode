@@ -2,9 +2,9 @@ package com.cheney.gencode.gen.java;
 
 import org.w3c.dom.Document;
 
-import com.cheney.gencode.gen.comment.GenClassHeadComment;
-import com.cheney.gencode.gen.module.GenGlobalConfig;
-import com.cheney.gencode.gen.module.GenQuery;
+import com.cheney.gencode.gen.java.comment.GenClassHeadComment;
+import com.cheney.gencode.gen.java.module.GenGlobalConfig;
+import com.cheney.gencode.gen.java.module.GenQuery;
 import com.cheney.gencode.module.GlobalConfig;
 import com.cheney.gencode.module.Query;
 

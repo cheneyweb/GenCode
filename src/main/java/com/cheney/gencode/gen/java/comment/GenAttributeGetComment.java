@@ -6,7 +6,7 @@
  * @date: 2014年10月24日 下午3:18:50
  * @version: V1.0
  */
-package com.cheney.gencode.gen.comment;
+package com.cheney.gencode.gen.java.comment;
 
 import com.cheney.gencode.enums.EnumShortcut;
 import com.cheney.gencode.util.string.StringUtil;

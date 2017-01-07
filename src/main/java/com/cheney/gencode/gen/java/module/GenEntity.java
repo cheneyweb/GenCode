@@ -1,4 +1,4 @@
-package com.cheney.gencode.gen.module;
+package com.cheney.gencode.gen.java.module;
 
 import java.util.Map;
 

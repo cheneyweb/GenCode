@@ -1,4 +1,4 @@
-package com.cheney.gencode.gen.comment;
+package com.cheney.gencode.gen.java.comment;
 
 import com.cheney.gencode.enums.EnumShortcut;
 import com.cheney.gencode.util.string.StringUtil;

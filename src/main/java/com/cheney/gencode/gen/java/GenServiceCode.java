@@ -1,8 +1,10 @@
 package com.cheney.gencode.gen.java;
 
-import com.cheney.gencode.gen.common.GenImplCode;
-import com.cheney.gencode.gen.common.GenInterfaceCode;
-import com.cheney.gencode.gen.module.GenService;
+import java.util.Map;
+
+import com.cheney.gencode.gen.java.common.GenImplCode;
+import com.cheney.gencode.gen.java.common.GenInterfaceCode;
+import com.cheney.gencode.gen.java.module.GenService;
 import com.cheney.gencode.module.Service;
 
 /**
@@ -19,14 +21,16 @@ public class GenServiceCode {
 	 * <p>Title: genInterface</p>
 	 * <p>author : xuyushuai</p>
 	 * <p>date : 2015年5月4日 上午10:52:51</p>
-	 * @param json
+	 * @param parmMap
 	 * @return Service的接口代码
 	 */
-	public static String genInterface(String json) {
+	public static String genInterface(Map<String,String> parmMap) {
 		String code = null;
 		try {
+			String json = parmMap.get("json");
 			Service service = GenService.getService(json);
-			code = GenInterfaceCode.gen("Service", service.getMethods());
+			parmMap.put("moduleName","Service");
+			code = GenInterfaceCode.gen(parmMap,service.getMethods());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -40,11 +44,13 @@ public class GenServiceCode {
 	 * @param json
 	 * @return Service的实现代码
 	 */
-	public static String genImpl(String json) {
+	public static String genImpl(Map<String,String> parmMap) {
 		String code = null;
 		try {
+			String json = parmMap.get("json");
 			Service service = GenService.getService(json);
-			code = GenImplCode.gen("Service", service.getMethods());
+			parmMap.put("moduleName","Service");
+			code = GenImplCode.gen(parmMap,service.getMethods());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

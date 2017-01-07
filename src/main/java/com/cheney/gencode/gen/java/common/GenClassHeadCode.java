@@ -1,4 +1,4 @@
-package com.cheney.gencode.gen.common;
+package com.cheney.gencode.gen.java.common;
 
 import org.springframework.util.StringUtils;
 

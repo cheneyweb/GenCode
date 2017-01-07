@@ -1,37 +1,37 @@
-package com.cheney.gencode.gen.module;
+package com.cheney.gencode.gen.java.module;
 
 import java.util.List;
 
-import com.cheney.gencode.module.Dao;
 import com.cheney.gencode.module.Method;
+import com.cheney.gencode.module.Service;
 
 /**
- * @Moudle: GenDao
+ * @Moudle: GenService
  * @version:v1.0
- * @Description: 生成Dao
+ * @Description: 生成GenService
  * @author: xuyushuai
  * @date: 2014年10月21日 下午2:55:47
  *
  */
-public class GenDao {
+public class GenService {
 	/**
 	 *
-	 * <p>Title: 获取Dao</p>
+	 * <p>Title: 获取Service</p>
 	 * <p>author : xuyushuai</p>
 	 * <p>date : 2014年10月21日 下午3:03:05</p>
 	 * 
 	 * @param json
-	 * @return Dao
+	 * @return Service
 	 */
-	public static Dao getDao(String json) throws Exception {
-		Dao dao = null;
+	public static Service getService(String json){
+		Service service = null;
 		try {
-			dao = new Dao();
+			service = new Service();
 			List<Method> methods = GenMethod.getMethods(json);
-			dao.setMethods(methods);
+			service.setMethods(methods);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return dao;
+		return service;
 	}
 }

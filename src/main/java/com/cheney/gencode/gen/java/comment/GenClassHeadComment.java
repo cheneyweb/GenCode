@@ -1,4 +1,4 @@
-package com.cheney.gencode.gen.comment;
+package com.cheney.gencode.gen.java.comment;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

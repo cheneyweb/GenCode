@@ -1,8 +1,10 @@
-package com.cheney.gencode.gen.comment;
+package com.cheney.gencode.gen.java.comment;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+
+import com.cheney.gencode.enums.EnumShortcut;
 
 /**
  * @Moudle: GenMethodComment
@@ -26,39 +28,50 @@ public class GenMethodComment {
 	 */
 	public static String gen(String methodName, Map<String, String> inParamMap, String returnType, String author) {
 		String comment = "";
-		comment += "\t/**";
-		comment += "\t\r\n";
-		comment += "\t * <p>Title: ";
+		comment += EnumShortcut.TAB.getValue();
+		comment += "/**";
+		comment += EnumShortcut.TAB.getValue();
+		comment += EnumShortcut.NL.getValue();
+		comment += EnumShortcut.TAB.getValue();
+		comment += " * <p>Title: ";
 		comment += methodName;
 		comment += "</p>";
-		comment += "\t\r\n";
-		comment += "\t * <p>author: ";
+		comment += EnumShortcut.TAB.getValue();
+		comment += EnumShortcut.NL.getValue();
+		comment += EnumShortcut.TAB.getValue();
+		comment += " * <p>author: ";
 		comment += author;
 		comment += "</p>";
-		comment += "\t\r\n";
-		comment += "\t * <p>date: ";
+		comment += EnumShortcut.TAB.getValue();
+		comment += EnumShortcut.NL.getValue();
+		comment += EnumShortcut.TAB.getValue();
+		comment += " * <p>date: ";
 		Date date = new Date();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		comment += df.format(date);
 		comment += "</p>";
-		comment += "\r\n";
-		comment += "\t * ";
-		comment += "\r\n";
+		comment += EnumShortcut.NL.getValue();
+		comment += EnumShortcut.TAB.getValue();
+		comment += " * ";
+		comment += EnumShortcut.NL.getValue();
 		for (String inParam : inParamMap.keySet()) {
-			comment += "\t * ";
+			comment += EnumShortcut.TAB.getValue();
+			comment += " * ";
 			comment += "@param ";
 			comment += inParam;
 			comment += " (";
 			comment += inParamMap.get(inParam);
 			comment += ")";
-			comment += "\r\n";
+			comment += EnumShortcut.NL.getValue();
 		}
-		comment += "\t * ";
+		comment += EnumShortcut.TAB.getValue();
+		comment += " * ";
 		comment += "@return ";
 		comment += returnType;
-		comment += "\r\n";
-		comment += "\t */";
-		comment += "\r\n";
+		comment += EnumShortcut.NL.getValue();
+		comment += EnumShortcut.TAB.getValue();
+		comment += " */";
+		comment += EnumShortcut.NL.getValue();
 
 		return comment;
 	}
