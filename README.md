@@ -2,27 +2,31 @@
 框架简介
 >
 	这是一个超简单好用的，云端在线代码生成器；
-	目前支持javaweb代码生成，一键生成Service,Dao,Entity等等，快来试试吧，编码效率会空前提高呢~；
+	目前支持Javaweb代码生成，一键生成Service,Dao,Entity等等，快来试试吧，编码效率会空前提高呢~；
 	未来还会拓展PHP，JavaScript，HTML，SQL，Android，IOS，XML等等众多语言代码的一键生成，GenCode的目标是——最懒程序员！
 
 解析引擎层次
 >
-	com.cheney.gencode.enums:			通用枚举
+	com.cheney.gencode.enums:					通用枚举
 >
-	com.cheney.gencode.gen.comment:		注释生成
-	com.cheney.gencode.gen.common:		模块组件代码生成
-	com.cheney.gencode.gen.html:		HTML代码生成
-	com.cheney.gencode.gen.java:		Java代码生成
-	com.cheney.gencode.gen.javascript:	JavaScript代码生成
-	com.cheney.gencode.gen.module:		模块生成（工厂模式）
-	com.cheney.gencode.gen.sql:			SQL代码生成
+	com.cheney.gencode.gen.html:				HTML代码生成
+	
+	com.cheney.gencode.gen.java:				Java代码生成
+	com.cheney.gencode.gen.java.comment:		Java注释生成
+	com.cheney.gencode.gen.java.common:         Java通用代码生成
+	com.cheney.gencode.gen.java.module: 		Java代码模块
+	
+	com.cheney.gencode.gen.javascript:			JavaScript代码生成
+	com.cheney.gencode.gen.linuxbash:			LinuxBash代码生成
+	com.cheney.gencode.gen.regex:				正则表达式代码生成
+	com.cheney.gencode.gen.sql:					SQL代码生成
 >	
-	com.cheney.gencode.module:			模块的实体
+	com.cheney.gencode.module:					模块的实体
 >	
-	com.cheney.gencode.util.db:			数据库操作工具
-	com.cheney.gencode.util.file:		文件操作工具
-	com.cheney.gencode.util.string:		字符串操作工具
-	com.cheney.gencode.util.xml:		XML操作操作工具
+	com.cheney.gencode.util.db:					数据库操作工具
+	com.cheney.gencode.util.file:				文件操作工具
+	com.cheney.gencode.util.string:				字符串操作工具
+	com.cheney.gencode.util.xml:				XML操作操作工具
 
 前端结构
 >
