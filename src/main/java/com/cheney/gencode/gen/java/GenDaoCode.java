@@ -8,12 +8,9 @@
  */
 package com.cheney.gencode.gen.java;
 
-import org.w3c.dom.Document;
-
 import com.cheney.gencode.gen.common.GenImplCode;
 import com.cheney.gencode.gen.common.GenInterfaceCode;
 import com.cheney.gencode.gen.module.GenDao;
-import com.cheney.gencode.gen.module.GenErrorDetail;
 import com.cheney.gencode.module.Dao;
 
 /**
@@ -30,33 +27,35 @@ public class GenDaoCode {
 	 * <p>Title: genInterface</p>
 	 * <p>author : xuyushuai</p>
 	 * <p>date : 2015年5月4日 上午10:51:02</p>
-	 * @param document
+	 * @param json
 	 * @return Dao接口代码
 	 */
-	public static String genInterface(Document document) {
+	public static String genInterface(String json) {
+		String code = null;
 		try {
-			Dao dao = GenDao.getDao(document);
-			return GenInterfaceCode.gen("Dao", dao.getMethods());
+			Dao dao = GenDao.getDao(json);
+			code = GenInterfaceCode.gen("Dao", dao.getMethods());
 		} catch (Exception e) {
-			GenErrorDetail.put("GenDaoCode.genInterface", e.getMessage());
-			return null;
+			e.printStackTrace();
 		}
+		return code;
 	}
 
 	/**
 	 * <p>Title: genImpl</p>
 	 * <p>author : xuyushuai</p>
 	 * <p>date : 2015年5月4日 上午10:51:04</p>
-	 * @param document
+	 * @param json
 	 * @return Dao接口实现代码
 	 */
-	public static String genImpl(Document document) {
+	public static String genImpl(String json) {
+		String code = null;
 		try {
-			Dao dao = GenDao.getDao(document);
-			return GenImplCode.gen("Dao", dao.getMethods());
+			Dao dao = GenDao.getDao(json);
+			code = GenImplCode.gen("Dao", dao.getMethods());
 		} catch (Exception e) {
-			GenErrorDetail.put("GenDaoCode.genImpl", e.getMessage());
-			return null;
+			e.printStackTrace();
 		}
+		return code;
 	}
 }

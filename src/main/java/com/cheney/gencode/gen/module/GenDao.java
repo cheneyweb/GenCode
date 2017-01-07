@@ -2,10 +2,6 @@ package com.cheney.gencode.gen.module;
 
 import java.util.List;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
 import com.cheney.gencode.module.Dao;
 import com.cheney.gencode.module.Method;
 
@@ -24,22 +20,17 @@ public class GenDao {
 	 * <p>author : xuyushuai</p>
 	 * <p>date : 2014年10月21日 下午3:03:05</p>
 	 * 
-	 * @param document
+	 * @param json
 	 * @return Dao
 	 */
-	public static Dao getDao(Document document) throws Exception {
+	public static Dao getDao(String json) throws Exception {
 		Dao dao = null;
 		try {
-			NodeList list = document.getElementsByTagName("dao");
-			Element element = (Element) list.item(0);
-				dao = new Dao();
-				NodeList methodList = element.getElementsByTagName("method");
-				// 获得所有方法
-				List<Method> methods = GenMethod.getMethods(methodList);
-				dao.setMethods(methods);
+			dao = new Dao();
+			List<Method> methods = GenMethod.getMethods(json);
+			dao.setMethods(methods);
 		} catch (Exception e) {
-			GenErrorDetail.put("GenDao.getDao","Dao标签元素不存在");
-			throw new Exception("获取Dao实体失败");
+			e.printStackTrace();
 		}
 		return dao;
 	}

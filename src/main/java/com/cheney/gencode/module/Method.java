@@ -19,14 +19,14 @@ import java.util.Map;
  *
  */
 public class Method {
+	// 名称
+    private String name;
+    // 入参map
+    private Map<String, String> inParamMap;
     // 返回值
     private String returnType;
 
-    // 入参map
-    private Map<String, String> inParamMap;
-
-    // 名称
-    private String name;
+    
 
     /**
      * 取得returnType

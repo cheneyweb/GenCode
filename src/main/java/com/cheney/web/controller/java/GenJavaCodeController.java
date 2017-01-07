@@ -1,24 +1,15 @@
 package com.cheney.web.controller.java;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang.StringEscapeUtils;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.w3c.dom.Document;
 
-import com.cheney.gencode.gen.java.GenDaoCode;
-import com.cheney.gencode.gen.java.GenManagerCode;
 import com.cheney.gencode.gen.java.GenServiceCode;
-import com.cheney.gencode.gen.module.GenErrorDetail;
 import com.cheney.gencode.gen.module.GenGlobalConfig;
 import com.cheney.gencode.module.GlobalConfig;
-import com.cheney.gencode.util.xml.XMLParseUtil;
 
 /**
  * @Moudle: GenJavaCodeController
@@ -33,20 +24,13 @@ import com.cheney.gencode.util.xml.XMLParseUtil;
 public class GenJavaCodeController {
 
 	@RequestMapping(value="/genservice",method=RequestMethod.POST)
-	public Map<String,String> genService(String xml, String prefix) {
+	public Map<String,String> genService(String json, String prefix) {
 		initGlobalConfig(prefix);
-		// 获取XML的document
-
-		String fullXml = "<service>" + xml + "</service>";
-		InputStream inputStream = new ByteArrayInputStream(fullXml.getBytes());
-		Document document = XMLParseUtil.getDocument(inputStream);
-
-		String interfaceCode = GenServiceCode.genInterface(document);
-		String implCode = GenServiceCode.genImpl(document);
-		
-//		if (GenErrorDetail.hasError()) {
-//				return GenErrorDetail.errorProcess(model);
-//		}
+		json = json.replaceAll("\\s","");
+		// 生成接口代码和实现代码
+		String interfaceCode = GenServiceCode.genInterface(json);
+		String implCode = GenServiceCode.genImpl(json);
+		// 返回数据
 		Map<String,String> codeMap = new HashMap<String,String>();
 		codeMap.put("interfaceCode", interfaceCode);
 		codeMap.put("implCode", implCode);
@@ -54,71 +38,9 @@ public class GenJavaCodeController {
 		return codeMap;
 	}
 
-	@RequestMapping("/genmanager")
-	public String genManager(String xmlTemp, String prefix, ModelMap model) {
-		initGlobalConfig(prefix);
-		// 获取XML的document
-		if (xmlTemp != null) {
-			String fullXml = "<manager>" + xmlTemp + "</manager>";
-
-			InputStream inputStream = new ByteArrayInputStream(fullXml.getBytes());
-			Document document = XMLParseUtil.getDocument(inputStream);
-
-			String interfaceCode = GenManagerCode.genInterface(document);
-			String implCode = GenManagerCode.genImpl(document);
-			
-			if (GenErrorDetail.hasError()) {
-				return GenErrorDetail.errorProcess(model);
-			}
-			
-			model.addAttribute("interfaceCode", StringEscapeUtils.escapeHtml(interfaceCode));
-			model.addAttribute("implCode", StringEscapeUtils.escapeHtml(implCode));
-			model.addAttribute("prefix", prefix);
-		}
-
-		// 将传入的xml返回
-		setXml(xmlTemp, model);
-
-		model.addAttribute("type", "Manager");
-		return "content/gencode/java/javacode";
-	}
-
 	@RequestMapping("/gendao")
-	public String genDao(String xmlTemp, String prefix, ModelMap model) {
-		initGlobalConfig(prefix);
-
-		if (xmlTemp != null) {
-			// 获取XML的document
-			String fullXml = "<dao>" + xmlTemp + "</dao>";
-			InputStream inputStream = new ByteArrayInputStream(fullXml.getBytes());
-			Document document = XMLParseUtil.getDocument(inputStream);
-
-			String interfaceCode = GenDaoCode.genInterface(document);
-			String implCode = GenDaoCode.genImpl(document);
-
-			if (GenErrorDetail.hasError()) {
-				return GenErrorDetail.errorProcess(model);
-			}
-
-			model.addAttribute("interfaceCode", StringEscapeUtils.escapeHtml(interfaceCode));
-			model.addAttribute("implCode", StringEscapeUtils.escapeHtml(implCode));
-			model.addAttribute("prefix", prefix);
-		}
-		// 将传入的xml返回
-		setXml(xmlTemp, model);
-
-		model.addAttribute("type", "Dao");
+	public String genDao(String json, String prefix) {
 		return "content/gencode/java/javacode";
-	}
-
-	private void setXml(String xmlTemp, ModelMap model) {
-		if (xmlTemp != null && !xmlTemp.equals("")) {
-			String xml = "";
-			for (String code : xmlTemp.split("</method>")) {
-				xml = xml + code + "</method>" + "\n";
-			}
-			model.addAttribute("xml", xml);
-		}
 	}
 
 	private void initGlobalConfig(String prefix) {

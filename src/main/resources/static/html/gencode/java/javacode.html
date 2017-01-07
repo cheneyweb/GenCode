@@ -14,7 +14,7 @@
     <br/>
     <br/>
     <div class="col-lg-12">
-    	<textarea class="form-control" id="myTextarea" v-model="query.xml"></textarea>
+    	<textarea class="form-control" id="myTextarea" v-model="query.json"></textarea>
     </div>
     <br/>
     <div class="col-lg-6">
@@ -36,7 +36,7 @@ $(function() {
             title: 'Service',
             query: {
                 prefix: '',
-                xml: ''
+                json: ''
             },
             codeLeft: '',
             codeRight:'',
@@ -47,7 +47,7 @@ $(function() {
             genCode: function() {
                 var vm = this
                 // 设置XML
-                vm.query.xml = editor.getValue()
+                vm.query.json = editor.getValue()
                 vm.$http.post(vm.genUrl, vm.query)
                     .then((sucResp) => {
                         vm.codeLeft = sucResp.data.interfaceCode
@@ -61,19 +61,24 @@ $(function() {
                     });
             },
             addMethod: function(){
-            	var str = editor.getValue() + defaultstr
+            	var str = editor.getValue()
+            	var sn = str.indexOf(']') - 1
+            	str = insertString(str,insertStr,sn)
                 editor.setValue(str)
             }
         }
     });
     // 加载高亮代码编辑器
     var editor = CodeMirror.fromTextArea(myTextarea, {
-        mode: "xml",
-        lineWrapping: "true",
+        mode: "javascript",
+        json: true,
+        lineWrapping: true,
         smartIndent: false,
         lineNumbers: true
     });
-    var defaultstr = '<method returnType="int" inParamTypes="String" inParams="name">methodName</method>' + '\n';
+    //var defaultstr = '<method returnType="int" inParamTypes="String" inParams="name">methodName</method>' + '\n';
+    var insertStr = ','+'\n'+'{"name":"methodName","inParamMap":{"String":"parm"},"returnType":"int"}';
+    var defaultstr = '['+'\n'+ '{"name":"methodName","inParamMap":{"String":"parm"},"returnType":"int"}' +'\n'+']'
     if (editor.getValue() == '') {
         editor.setValue(defaultstr);
     }
@@ -95,4 +100,12 @@ $(function() {
 	    lineNumbers: true
 	});
 });
+// 插入字符串
+function insertString(str,insertStr,sn){
+    var newstr="";
+    var begin=str.substring(0,sn);
+    var end=str.substring(sn,str.length);
+    newstr = begin + insertStr + end;
+    return newstr;
+}
 </script>
