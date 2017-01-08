@@ -7,39 +7,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cheney.gencode.gen.java.GenServiceCode;
+import com.cheney.gencode.gen.java.GenDaoCode;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * @Moudle: GenJavaCodeController
+ * @Moudle: GenDaoCodeController
  * @version:v1.0
  * @Description: Java代码生成器控制入口
  * @author: xuyushuai
  * @date: 2015年3月27日 下午2:08:57
  *
  */
-@Api(tags = "JAVAService")
+@Api(tags = "JAVADao")
 @RestController
 @RequestMapping("/gencode/java")
-public class GenJavaCodeController {
+public class GenDaoCodeController {
 
-	@ApiOperation(value = "生成Java业务层代码", notes = "")
-	@RequestMapping(value = "/genservice", method = RequestMethod.POST)
-	public Map<String, String> genService(String prefix, String json) {
+	@ApiOperation(value = "生成JavaDap代码", notes = "")
+	@RequestMapping(value = "/gendao", method = RequestMethod.POST)
+	public Map<String, String> genDao(String prefix, String json) {
 		// 入参设置
 		json = json.replaceAll("\\s", "");
 		Map<String, String> parmMap = new HashMap<String, String>();
 		parmMap.put("prefix", prefix);
 		parmMap.put("json", json);
 		// 生成接口代码和实现代码
-		String interfaceCode = GenServiceCode.genInterface(parmMap);
-		String implCode = GenServiceCode.genImpl(parmMap);
+		String interfaceCode = GenDaoCode.genInterface(json);
+		String mapperCode = GenDaoCode.genMapper(json);
 		// 返回数据
 		Map<String, String> codeMap = new HashMap<String, String>();
 		codeMap.put("interfaceCode", interfaceCode);
-		codeMap.put("implCode", implCode);
+		codeMap.put("mapperCode", mapperCode);
 
 		return codeMap;
 	}

@@ -1,8 +1,8 @@
-<div id="javacode">
+<div id="daocode">
     <h1 class="page-header">{{title}}</h1>
     <div class="input-group col-lg-6">
         <div class="input-group-addon">Prefix</div>
-        <input class="form-control" type="text" placeholder="Example: input 'User' if you want 'UserService'" v-model="query.prefix">
+        <input class="form-control" type="text" placeholder="Example: input 'User' if you want 'UserDao'" v-model="query.prefix">
     </div>
     <br/>
      <br/>
@@ -30,10 +30,10 @@
 Vue.http.options.emulateJSON = true;
 $(function() {
     new Vue({
-        el: '#javacode',
+        el: '#daocode',
         data: {
-            genUrl: '/gencode/java/genservice.json',
-            title: 'Service',
+            genUrl: '/gencode/java/gendao.json',
+            title: 'Dao',
             query: {
                 prefix: '',
                 json: ''
@@ -51,7 +51,7 @@ $(function() {
                 vm.$http.post(vm.genUrl, vm.query)
                     .then((sucResp) => {
                         vm.codeLeft = sucResp.data.interfaceCode
-                        vm.codeRight = sucResp.data.implCode
+                        vm.codeRight = sucResp.data.mapperCode
                         cmLeft.setValue(vm.codeLeft)
                         cmLeft.setSize('auto', 'auto')
                         cmRight.setValue(vm.codeRight)

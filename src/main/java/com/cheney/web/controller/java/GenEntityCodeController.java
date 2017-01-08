@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cheney.gencode.gen.java.GenEntityCode;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * @Moudle: GenDtoCodeController 
  * @version:v1.0
@@ -19,10 +22,12 @@ import com.cheney.gencode.gen.java.GenEntityCode;
  * @date: 2015年4月28日 上午11:25:43
  *
  */
+@Api(tags = "JAVAEntity")
 @RestController
 @RequestMapping("/gencode/java")
 public class GenEntityCodeController {
-
+	
+	@ApiOperation(value = "生成Java实体代码", notes = "")
 	@RequestMapping(value="/genentity",method=RequestMethod.POST)
 	public Map<String,String> genDto(String prefix, String extendsClass, String implementsInterface, String createTableSql, String columnCommentSql, HttpServletResponse response) {
 		// 入参设置

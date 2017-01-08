@@ -9,16 +9,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cheney.gencode.gen.html.GenFormCode;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(tags="HTMLForm")
 @RestController
 @RequestMapping("/gencode/html")
 public class GenFormCodeController {
-	@RequestMapping(value="/genform",method=RequestMethod.POST)
-	public Map<String,String> genForm(String selectedType) {		
+	
+	@ApiOperation(value = "生成表单代码", notes = "")
+	@RequestMapping(value = "/genform", method = RequestMethod.POST)
+	public Map<String, String> genForm(String selectedType) {
 		String htmlFormCode = GenFormCode.genForm(selectedType);
-//		htmlFormCode = StringEscapeUtils.escapeHtml(htmlFormCode);
-		Map<String,String> codeMap = new HashMap<String,String>();
+		// htmlFormCode = StringEscapeUtils.escapeHtml(htmlFormCode);
+		Map<String, String> codeMap = new HashMap<String, String>();
 		codeMap.put("htmlFormCode", htmlFormCode);
-		codeMap.put("respMsg","Y");
+		codeMap.put("respMsg", "Y");
 		return codeMap;
 	}
 }

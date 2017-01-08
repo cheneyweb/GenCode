@@ -26,7 +26,7 @@ public class GenDaoCode {
 	 * @return Dao接口代码
 	 */
 	public static String genInterface(String json) {
-		String code = null;
+		String code = "建设中...";
 		try {
 //			Dao dao = GenDao.getDao(json);
 //			code = GenInterfaceCode.gen("Dao", dao.getMethods());
@@ -37,14 +37,14 @@ public class GenDaoCode {
 	}
 
 	/**
-	 * <p>Title: genImpl</p>
+	 * <p>Title: genMapper</p>
 	 * <p>author : xuyushuai</p>
 	 * <p>date : 2015年5月4日 上午10:51:04</p>
 	 * @param json
-	 * @return Dao接口实现代码
+	 * @return Mybatis的Mapper代码
 	 */
-	public static String genImpl(String json) {
-		String code = null;
+	public static String genMapper(String json) {
+		String code = "建设中...";
 		try {
 //			Dao dao = GenDao.getDao(json);
 //			code = GenImplCode.gen("Dao", dao.getMethods());
