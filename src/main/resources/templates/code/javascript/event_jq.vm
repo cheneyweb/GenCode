@@ -1,0 +1,20 @@
+#if($!type == 'click')
+$('').click(function(){
+});
+#end
+#if($!type == 'change')
+$('').change(function(){
+});
+#end
+#if($!type == 'focus')
+$('').focus(function(){
+});
+#end
+#if($!type == 'blur')
+$('').blur(function(){
+});
+#end
+#if($!type == 'submit')
+$('').submit(function(){
+});
+#end

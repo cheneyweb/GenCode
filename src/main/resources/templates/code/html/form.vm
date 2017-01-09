@@ -1,0 +1,17 @@
+#if($!type == 'input')
+<input type="" name="" value="" class=""></input>
+#end
+#if($!type == 'select')
+<select class="">
+	<option value =""></option>
+</select>
+#end
+#if($!type == 'radio')
+<input type="radio" name="" value="" class=""></input>
+#end
+#if($!type == 'checkbox')
+<input type="checkbox" name="" value="" class=""></input>
+#end
+#if($!type == 'textarea')
+<textarea rows="" cols="" class=""></textarea>
+#end

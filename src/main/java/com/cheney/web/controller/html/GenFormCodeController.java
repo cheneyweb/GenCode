@@ -20,8 +20,12 @@ public class GenFormCodeController {
 	@ApiOperation(value = "生成表单代码", notes = "")
 	@RequestMapping(value = "/genform", method = RequestMethod.POST)
 	public Map<String, String> genForm(String selectedType) {
-		String htmlFormCode = GenFormCode.genForm(selectedType);
-		// htmlFormCode = StringEscapeUtils.escapeHtml(htmlFormCode);
+		// 入参设置
+		Map<String, String> parmMap = new HashMap<String,String>();
+		parmMap.put("type", selectedType);
+		// 表单代码生成
+		String htmlFormCode = GenFormCode.genForm(parmMap);
+		// 返回数据
 		Map<String, String> codeMap = new HashMap<String, String>();
 		codeMap.put("htmlFormCode", htmlFormCode);
 		codeMap.put("respMsg", "Y");

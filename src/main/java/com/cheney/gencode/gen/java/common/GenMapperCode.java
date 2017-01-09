@@ -32,7 +32,7 @@ public class GenMapperCode {
 		StringWriter stringWriter = new StringWriter();
 		velocityContext.put("id", "id");
 		velocityContext.put("paramterType", "paramterType");
-		velocityEngine.mergeTemplate("src/main/resources/templates/code/java/dao/mapper.vm", "UTF-8", velocityContext,stringWriter);
+		velocityEngine.mergeTemplate("src/main/resources/templates/code/java/mapper_method.vm", "UTF-8", velocityContext,stringWriter);
 		code += stringWriter.toString();
 
 		return code;

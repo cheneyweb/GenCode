@@ -1,6 +1,0 @@
-<mapper namespace="com.dao.Dao">
-
-<select id="id" parameterType="java.lang.String" resultType="">
-	select t.* from tableName t where t.id= #{id}
-</select>
-

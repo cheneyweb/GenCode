@@ -19,9 +19,13 @@ public class GenHeadCodeController {
 
 	@ApiOperation(value = "生成HTML基础代码", notes = "")
 	@RequestMapping(value = "/genhead", method = RequestMethod.POST)
-	public Map<String, String> genHead(String type) {
-		String htmlHeadCode = GenHeadCode.genHead(type);
+	public Map<String, String> genHead() {
+		// 入参设置
+		Map<String,String> parmMap = new HashMap<String,String>();
+		// 生成html头部代码
+		String htmlHeadCode = GenHeadCode.genHead(parmMap);
 		// htmlHeadCode = StringEscapeUtils.escapeHtml(htmlHeadCode);
+		// 返回数据
 		Map<String, String> codeMap = new HashMap<String, String>();
 		codeMap.put("htmlHeadCode", htmlHeadCode);
 		codeMap.put("respMsg", "Y");

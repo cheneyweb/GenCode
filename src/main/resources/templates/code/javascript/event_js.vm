@@ -1,0 +1,20 @@
+#if($!type == 'click')
+document.getElementById('').onclick=function(){
+};
+#end
+#if($!type == 'change')
+document.getElementById('').onchange=function(){
+};
+#end
+#if($!type == 'focus')
+document.getElementById('').onfocus=function(){
+};
+#end
+#if($!type == 'blur')
+document.getElementById('').onblur=function(){
+};
+#end
+#if($!type == 'submit')
+document.getElementById('').onsubmit=function(){
+};
+#end

@@ -1,0 +1,24 @@
+<mapper namespace="com.dao.Dao">
+
+public List<XXBean> getXXBeanList(String xxCode);
+<select id="getXXXBeanList" parameterType="java.lang.String" resultType="XXBean">
+	select t.* from tableName t where t.id= #{id}  
+</select>
+
+public List<XXXBean> getXXXBeanList(String xxId, String xxCode);
+<select id="getXXXBeanList" resultType="XXBean">
+	select t.* from tableName where id = #{0} and name = #{1}
+</select>
+
+public List<XXXBean> getXXXBeanList(HashMap map);  
+<select id="getXXXBeanList" parameterType="hashmap" resultType="XXBean">
+　　select 字段... from XXX where id=#{xxId} code = #{xxCode}
+</select> 
+
+public List<XXXBean> getXXXBeanList(List<String> list);  
+<select id="getXXXBeanList" resultType="XXBean">
+　　select 字段... from XXX where id in
+　　<foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
+　　　　#{item}  
+　　</foreach>  
+</select>

@@ -1,4 +1,4 @@
-package com.demo.controller;
+package com.test.mybatis;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

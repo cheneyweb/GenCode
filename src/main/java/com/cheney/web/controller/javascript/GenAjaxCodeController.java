@@ -28,9 +28,14 @@ public class GenAjaxCodeController {
 	@ApiOperation(value = "生成AJAX代码", notes = "")
 	@RequestMapping(value = "/gencode", method = RequestMethod.POST)
 	public Map<String, String> genGet(String selectedType) {
-		String jqueryAjaxCode = GenAjaxCode.genJquery(selectedType);
-		String javaScriptAjaxCode = GenAjaxCode.genJavaScript(selectedType);
+		// 入参设置
+		Map<String, String> parmMap = new HashMap<String,String>();
+		parmMap.put("type", selectedType);
+		// 代码生成
+		String jqueryAjaxCode = GenAjaxCode.genJquery(parmMap);
+		String javaScriptAjaxCode = GenAjaxCode.genJavaScript(parmMap);
 		Map<String, String> codeMap = new HashMap<String, String>();
+		// 返回数据
 		codeMap.put("jqueryAjaxCode", jqueryAjaxCode);
 		codeMap.put("javaScriptAjaxCode", javaScriptAjaxCode);
 		return codeMap;

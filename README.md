@@ -10,12 +10,12 @@
 	com.cheney.gencode.enums:					通用枚举
 >
 	com.cheney.gencode.gen.html:				HTML代码生成
-	
+>
 	com.cheney.gencode.gen.java:				Java代码生成
 	com.cheney.gencode.gen.java.comment:		Java注释生成
 	com.cheney.gencode.gen.java.common:         Java通用代码生成
 	com.cheney.gencode.gen.java.module: 		Java代码模块
-	
+>
 	com.cheney.gencode.gen.javascript:			JavaScript代码生成
 	com.cheney.gencode.gen.linuxbash:			LinuxBash代码生成
 	com.cheney.gencode.gen.regex:				正则表达式代码生成
@@ -35,6 +35,7 @@
 		frame（前端框架文件）
 		html（生成器前端文件）
 	resources/templates/
+		code(生成代码模板文件)
 		layout（VM基础布局文件）
 注意事项
 >
@@ -43,3 +44,4 @@
 更新记录
 >
 	2017.1.6:由SpringMVC改为SpringBoot，前端使用Vue解耦，花了一个月的时间推倒重构，但是这也是一个学习的过程
+	2017.1.9:开始采用模板生成代码，后续将逐步取代原先的字符串拼接

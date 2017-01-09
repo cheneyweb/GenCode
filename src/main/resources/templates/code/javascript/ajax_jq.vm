@@ -1,0 +1,12 @@
+jQuery.ajax({
+#if($!type == 'post')
+	type:'POST',
+#end
+	url:,''
+	data:{},
+	async:true,
+	success:function(response){
+		if(response == 'success'){
+		}
+	}
+});

@@ -1,5 +1,11 @@
 package com.cheney.gencode.gen.javascript;
 
+import java.io.StringWriter;
+import java.util.Map;
+
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+
 /**
  * @Moudle: GenAjaxCode 
  * @version:v1.0
@@ -15,13 +21,17 @@ public class GenEventCode {
 	 * <p>date : 2015年3月27日 下午2:34:42</p>
 	 * @return Jquery版本的Ajax代码
 	 */
-	public static String genJquery(String type) {
-		String jqueryEventCode = "$('').";
-		jqueryEventCode += type;
-		jqueryEventCode += "(function(){";
-		jqueryEventCode += "\r\n";
-		jqueryEventCode += "});";
-		return jqueryEventCode;
+	public static String genJquery(Map<String, String> parmMap) {
+String code = "";
+		
+		VelocityEngine velocityEngine = new VelocityEngine();
+		VelocityContext velocityContext = new VelocityContext();
+		StringWriter stringWriter = new StringWriter();
+		velocityContext.put("type", parmMap.get("type"));
+		velocityEngine.mergeTemplate("src/main/resources/templates/code/javascript/event_jq.vm", "UTF-8", velocityContext,stringWriter);
+		code += stringWriter.toString();
+		
+		return code;
 	}
 
 	/**
@@ -30,12 +40,16 @@ public class GenEventCode {
 	 * <p>date : 2015年3月27日 下午2:34:43</p>
 	 * @return JavaScript版本的Ajax代码
 	 */
-	public static String genJavaScript(String type) {
-		String javaScriptEventCode = "document.getElementById('').on";
-		javaScriptEventCode += type;
-		javaScriptEventCode += "=function(){";
-		javaScriptEventCode += "\r\n";
-		javaScriptEventCode += "};";
-		return javaScriptEventCode;
+	public static String genJavaScript(Map<String, String> parmMap) {
+String code = "";
+		
+		VelocityEngine velocityEngine = new VelocityEngine();
+		VelocityContext velocityContext = new VelocityContext();
+		StringWriter stringWriter = new StringWriter();
+		velocityContext.put("type", parmMap.get("type"));
+		velocityEngine.mergeTemplate("src/main/resources/templates/code/javascript/event_js.vm", "UTF-8", velocityContext,stringWriter);
+		code += stringWriter.toString();
+		
+		return code;
 	}
 }

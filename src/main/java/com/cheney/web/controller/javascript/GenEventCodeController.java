@@ -28,9 +28,14 @@ public class GenEventCodeController {
 	@ApiOperation(value = "生成Event代码", notes = "")
 	@RequestMapping(value="/genevent",method = RequestMethod.POST)
 	public Map<String,String> genClick(String selectedType) {
-		String jqueryEventCode = GenEventCode.genJquery(selectedType);
-		String javaScriptEventCode = GenEventCode.genJavaScript(selectedType);
+		// 入参设置
+		Map<String, String> parmMap = new HashMap<String,String>();
+		parmMap.put("type", selectedType);
+		// 事件代码生成
+		String jqueryEventCode = GenEventCode.genJquery(parmMap);
+		String javaScriptEventCode = GenEventCode.genJavaScript(parmMap);
 		Map<String,String> codeMap = new HashMap<String,String>();
+		// 返回数据
 		codeMap.put("jqueryAjaxCode", jqueryEventCode);
 		codeMap.put("javaScriptAjaxCode", javaScriptEventCode);
 		return codeMap;
