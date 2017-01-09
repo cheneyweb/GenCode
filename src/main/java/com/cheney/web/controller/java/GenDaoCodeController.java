@@ -34,8 +34,8 @@ public class GenDaoCodeController {
 		parmMap.put("prefix", prefix);
 		parmMap.put("json", json);
 		// 生成接口代码和实现代码
-		String interfaceCode = GenDaoCode.genInterface(json);
-		String mapperCode = GenDaoCode.genMapper(json);
+		String interfaceCode = GenDaoCode.genInterface(parmMap);
+		String mapperCode = GenDaoCode.genMapper(parmMap);
 		// 返回数据
 		Map<String, String> codeMap = new HashMap<String, String>();
 		codeMap.put("interfaceCode", interfaceCode);
