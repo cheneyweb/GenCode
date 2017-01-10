@@ -1,0 +1,33 @@
+package $!parmMap.get('packageName');
+
+/**
+ * @Module: $!parmMap.get('serviceName')
+ * @Description: 
+ * @author: $!parmMap.get('author')
+ * @date: $!parmMap.get('currentTime')
+ */
+@Service("serviceImpl")
+public class $!parmMap.get('serviceName')Impl implements $!parmMap.get('serviceName'){
+#foreach( $!method in $!methods )
+	/**	
+	 * <p>Title: $!method.name </p>	
+	 * <p>author: $!parmMap.get('author') </p>	
+	 * <p>date: $!parmMap.get('currentTime') </p>
+	 * 
+#foreach($!inparm in $!method.inParamMap.entrySet())
+	 * @param $inparm.value ($inparm.key)
+#end
+	 * @return $!method.returnType
+	 */
+	@Override
+	public $!method.returnType $!method.name (#foreach($!inparm in $!method.inParamMap.entrySet())$inparm.value $inparm.key#if($velocityCount != $!method.inParamMap.size()),#end#end){
+		log.info("");
+		try{
+
+		}catch(Exception e){
+			log.error(e);
+		}
+		return null;
+	}
+#end
+}

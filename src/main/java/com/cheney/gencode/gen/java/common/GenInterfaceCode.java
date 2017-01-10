@@ -1,10 +1,14 @@
 package com.cheney.gencode.gen.java.common;
 
+import java.io.StringWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.cheney.gencode.enums.EnumShortcut;
-import com.cheney.gencode.gen.java.comment.GenClassHeadComment;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+
 import com.cheney.gencode.module.Method;
 
 /**
@@ -25,30 +29,26 @@ public class GenInterfaceCode {
 	 * @return 接口代码
 	 */ 
 	public static String gen(Map<String,String> parmMap,List<Method> methods) {
+		String code = "";
 		// 入参设置
 		String moduleName = parmMap.get("moduleName");
 		String prefix = parmMap.get("prefix");
 		String basepackage = parmMap.get("basepackage");
-		String author = parmMap.get("author");
-		// 生成Service接口文件
 		String interfaceName = prefix + moduleName;
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
-		StringBuffer sb = new StringBuffer();
-		// 包名
-		sb.append("package " + basepackage + "."+moduleName.toLowerCase()+";");
-		sb.append(EnumShortcut.NL2.getValue());
-		// 接口类头部注释
-		String comment = GenClassHeadComment.gen(interfaceName, author);
-		sb.append(comment);
-		// 接口类头部
-		String interfaceHeadCode = GenInterface.getHeadCode(interfaceName);
-		sb.append(interfaceHeadCode);
-		// 生成所有接口方法
-		String methodsCode = GenInterface.getCode(parmMap,methods);
-		sb.append(methodsCode);
-		// 闭合大括号
-		sb.append("}");
-
-		return sb.toString();
+		parmMap.put("currentTime", df.format(new Date()));
+		parmMap.put("interfaceName", interfaceName);
+		parmMap.put("packageName", basepackage+"."+moduleName.toLowerCase());
+		// 根据模板生成代码
+		VelocityEngine velocityEngine = new VelocityEngine();
+		VelocityContext velocityContext = new VelocityContext();
+		StringWriter stringWriter = new StringWriter();
+		velocityContext.put("methods", methods);
+		velocityContext.put("parmMap", parmMap);
+		velocityEngine.mergeTemplate("src/main/resources/templates/code/java/interface.vm", "UTF-8", velocityContext,stringWriter);
+		code += stringWriter.toString();
+		
+		return code;
 	}
 }

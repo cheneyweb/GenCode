@@ -77,8 +77,8 @@ $(function() {
         lineNumbers: true
     });
     //var defaultstr = '<method returnType="int" inParamTypes="String" inParams="name">methodName</method>' + '\n';
-    var insertStr = ','+'\n'+'{"name":"methodName","inParamMap":{"String":"parm"},"returnType":"int"}';
-    var defaultstr = '['+'\n'+ '{"name":"methodName","inParamMap":{"String":"parm"},"returnType":"int"}' +'\n'+']'
+    var insertStr = ','+'\n'+'{"name":"methodName","inParamMap":{"parm":"String"},"returnType":"int"}';
+    var defaultstr = '['+'\n'+ '{"name":"methodName","inParamMap":{"parm":"String"},"returnType":"int"}' +'\n'+']'
     if (editor.getValue() == '') {
         editor.setValue(defaultstr);
     }
