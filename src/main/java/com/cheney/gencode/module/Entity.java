@@ -9,38 +9,37 @@ package com.cheney.gencode.module;
  *
  */
 public class Entity {
-    // 继承的类
+	// 表前缀
+	private String tablePrefix;
+	// 类名
+    private String className;
+	// 继承的类
     private String extendsClass;
     // 实现的接口
     private String implementsInterface;
-    /** 
-     * 取得extendsClass
-     * @return String 处理结果
-     */
-    public String getExtendsClass() {
-        return extendsClass;
-    }
-    /** 
-     * 设置extendsClass
-     * @param extendsClass
-     */
-    public void setExtendsClass(String extendsClass) {
-        this.extendsClass = extendsClass;
-    }
-    /** 
-     * 取得implementsInterface
-     * @return String 处理结果
-     */
-    public String getImplementsInterface() {
-        return implementsInterface;
-    }
-    /** 
-     * 设置implementsInterface
-     * @param implementsInterface
-     */
-    public void setImplementsInterface(String implementsInterface) {
-        this.implementsInterface = implementsInterface;
-    }
     
-    
+	public String getTablePrefix() {
+		return tablePrefix;
+	}
+	public void setTablePrefix(String tablePrefix) {
+		this.tablePrefix = tablePrefix;
+	}
+	public String getClassName() {
+		return className;
+	}
+	public void setClassName(String className) {
+		this.className = className;
+	}
+	public String getExtendsClass() {
+		return extendsClass;
+	}
+	public void setExtendsClass(String extendsClass) {
+		this.extendsClass = extendsClass;
+	}
+	public String getImplementsInterface() {
+		return implementsInterface;
+	}
+	public void setImplementsInterface(String implementsInterface) {
+		this.implementsInterface = implementsInterface;
+	}
 }

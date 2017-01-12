@@ -11,44 +11,11 @@ package com.cheney.gencode.enums;
 public enum EnumShortcut {
 
 	/**
-	 * 回车换行
+	 * 日期格式化
 	 */
-	NL("\r\n"),
+	DATE_TIME_24("yyyy-MM-dd HH:mm:ss"),
 	
-	/**
-	 * 回车换行
-	 */
-	NL2("\r\n\r\n"),
-	
-	/**
-	 * 回车换行
-	 */
-	NL3("\r\n\r\n\r\n"),
-	
-	/**
-	 * 回车换行
-	 */
-	NL4("\r\n\r\n\r\n\r\n"),
-
-	/**
-	 * 制表符
-	 */
-	TAB("\t"),
-	
-	/**
-	 * 制表符
-	 */
-	TAB2("\t\t"),
-	
-	/**
-	 * 制表符
-	 */
-	TAB3("\t\t\t"),
-	
-	/**
-	 * 制表符
-	 */
-	TAB4("\t\t\t\t");
+	;
 
 	private String value;
 

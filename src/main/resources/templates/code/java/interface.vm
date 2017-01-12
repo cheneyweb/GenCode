@@ -4,14 +4,14 @@ package $!parmMap.get('packageName');
  * @Module: $!parmMap.get('interfaceName')
  * @Description: 
  * @author: $!parmMap.get('author')
- * @date: $!parmMap.get('currentTime')
+ * @date: $!toolBox.getCurrentTime()
  */
 public interface $!parmMap.get('interfaceName'){
 #foreach( $!method in $!methods )
 	/**	
 	 * <p>Title: $!method.name </p>	
 	 * <p>author: $!parmMap.get('author') </p>	
-	 * <p>date: $!parmMap.get('currentTime') </p>
+	 * <p>date: $!toolBox.getCurrentTime() </p>
 	 *
 #foreach($!inparm in $!method.inParamMap.entrySet())
 	 * @param $inparm.value ($inparm.key)

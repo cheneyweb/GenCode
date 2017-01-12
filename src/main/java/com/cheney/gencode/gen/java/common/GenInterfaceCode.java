@@ -1,8 +1,6 @@
 package com.cheney.gencode.gen.java.common;
 
 import java.io.StringWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +8,7 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
 import com.cheney.gencode.module.Method;
+import com.cheney.gencode.util.vm.ToolBox;
 
 /**
  * @Moudle: GenInterfaceCode
@@ -31,14 +30,13 @@ public class GenInterfaceCode {
 	public static String gen(Map<String,String> parmMap,List<Method> methods) {
 		String code = "";
 		// 入参设置
-		String moduleName = parmMap.get("moduleName");
-		String prefix = parmMap.get("prefix");
 		String basepackage = parmMap.get("basepackage");
+		String prefix = parmMap.get("prefix");
+		String moduleName = parmMap.get("moduleName");
+		// 接口名称
 		String interfaceName = prefix + moduleName;
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		
-		parmMap.put("currentTime", df.format(new Date()));
 		parmMap.put("interfaceName", interfaceName);
+		// 包名
 		parmMap.put("packageName", basepackage+"."+moduleName.toLowerCase());
 		// 根据模板生成代码
 		VelocityEngine velocityEngine = new VelocityEngine();
@@ -46,6 +44,7 @@ public class GenInterfaceCode {
 		StringWriter stringWriter = new StringWriter();
 		velocityContext.put("methods", methods);
 		velocityContext.put("parmMap", parmMap);
+		velocityContext.put("toolBox", new ToolBox());
 		velocityEngine.mergeTemplate("src/main/resources/templates/code/java/interface.vm", "UTF-8", velocityContext,stringWriter);
 		code += stringWriter.toString();
 		

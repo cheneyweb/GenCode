@@ -1,8 +1,7 @@
 package com.cheney.gencode.gen.java.module;
 
-import java.util.Map;
-
 import com.cheney.gencode.module.Entity;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * @Moudle: GenDto
@@ -21,13 +20,10 @@ public class GenEntity {
 	 * 
 	 * @param document
 	 * @return Entity
+	 * @throws Exception 
 	 */
-	public static Entity getEntity(Map<String,String> parmMap) {
-
-		Entity entity = new Entity();
-		entity.setExtendsClass(parmMap.get("extendsClass"));
-		entity.setImplementsInterface(parmMap.get("implementsInterface"));
-
-		return entity;
+	public static Entity getEntity(String json) throws Exception{
+		ObjectMapper objectMapper = new ObjectMapper();
+		return objectMapper.readValue(json,Entity.class);
 	}
 }

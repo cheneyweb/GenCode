@@ -1,20 +1,7 @@
 <div id="entitycode">
     <h1 class="page-header">{{title}}</h1>
-    <div class="input-group col-lg-6">
-        <div class="input-group-addon">Table Prefix</div>
-        <input class="form-control" type="text" placeholder="Example: input 'TABLE_' if tablename like 'TABLE_*'" v-model="query.prefix">
-    </div>
-    <br/>
-    <br/>
-    <div class="input-group col-lg-6">
-        <div class="input-group-addon">Extends</div>
-        <input class="form-control" type="text" placeholder="Example: input 'BaseEntity' if you want '*Entity extends BaseEntity'" v-model="query.extendsClass">
-    </div>
-    <br/>
-    <br/>
-    <div class="input-group col-lg-6">
-        <div class="input-group-addon">Implements</div>
-        <input class="form-control" type="text" placeholder="Example: input 'Serializable' if you want '*Entity implements Serializable'" v-model="query.implementsInterface">
+    <div class="col-lg-12">
+        <textarea class="form-control" id="jsonTextarea" v-model="query.json"></textarea>
     </div>
     <br/>
     <br/>
@@ -34,6 +21,10 @@
         <pre id="codeLeft" class="prettyprint">
 		</pre>
     </div>
+    <!-- <div class="col-lg-6">
+        <pre id="codeRight" class="prettyprint">
+		</pre>
+    </div> -->
 </div>
 <script>
 Vue.http.options.emulateJSON = true;
@@ -44,9 +35,7 @@ $(function() {
             genUrl: '/gencode/java/genentity.json',
             title: 'Entity',
             query: {
-                prefix: '',
-                extendsClass: '',
-                implementsInterface: '',
+                json:'',
                 createTableSql: '',
                 columnCommentSql: ''
             },
@@ -58,11 +47,12 @@ $(function() {
             genCode: function() {
                 var vm = this
                     // 设置XML
+                vm.query.json = editorJson.getValue()
                 vm.query.createTableSql = editor.getValue()
                 vm.query.columnCommentSql = editor2.getValue()
                 vm.$http.post(vm.genUrl, vm.query)
                     .then((sucResp) => {
-                        vm.codeLeft = sucResp.data.code
+                        vm.codeLeft = sucResp.data.classCode
                         //等待100毫秒后执行代码高亮渲染
                         //setTimeout("prettyPrint()", 100)
                         cmLeft.setValue(vm.codeLeft)
@@ -74,6 +64,14 @@ $(function() {
         }
     });
     // 加载高亮代码编辑器
+    var editorJson = CodeMirror.fromTextArea(jsonTextarea, {
+    	mode: "javascript",
+        json: true,
+        lineWrapping: "true",
+        smartIndent: false,
+        lineNumbers: true
+    });
+    editorJson.setSize('auto', 'auto');
     var editor = CodeMirror.fromTextArea(myTextarea, {
         mode: "sql",
         lineWrapping: "true",
@@ -91,6 +89,9 @@ $(function() {
 
     var defaultstr = 'create table TABLE_USER\n(\nID NUMBER(12) NOT NULL,\nUSER_NAME VARCHAR2(255) NOT NULL,\nPASSWORD VARCHAR2(255) NOT NULL\n);';
     var defaultstr2 = 'COMMENT ON COLUMN TABLE_USER.ID IS "主键";\nCOMMENT ON COLUMN TABLE_USER.USER_NAME IS "用户名";\nCOMMENT ON COLUMN TABLE_USER.PASSWORD IS "密码";\n';
+    if (editorJson.getValue() == '') {
+    	editorJson.setValue('{"tablePrefix":"TABLE_","extendsClass":"BaseEntity","implementsInterface":"Serializable"}');
+    }
     if (editor.getValue() == '') {
         editor.setValue(defaultstr);
     }

@@ -29,19 +29,22 @@ public class GenEntityCodeController {
 	
 	@ApiOperation(value = "生成Java实体代码", notes = "")
 	@RequestMapping(value="/genentity",method=RequestMethod.POST)
-	public Map<String,String> genDto(String prefix, String extendsClass, String implementsInterface, String createTableSql, String columnCommentSql, HttpServletResponse response) {
+	public Map<String,String> genDto(String json, String createTableSql, String columnCommentSql, HttpServletResponse response) {
 		// 入参设置
+		json = json.replaceAll("\\s", "");
 		Map<String,String> parmMap = new HashMap<String,String>();
-		parmMap.put("beanPrefix",prefix);
-		parmMap.put("extendsClass",extendsClass);
-		parmMap.put("implementsInterface",implementsInterface);
+		parmMap.put("json",json);
 		parmMap.put("basepackage","");
 		parmMap.put("author","");
 		parmMap.put("createTableSql",createTableSql);
 		parmMap.put("columnCommentSql",columnCommentSql);
-		// 生成实体代码
-		Map<String,String> resultMap = GenEntityCode.gen(parmMap);
-		return resultMap;
+		// 生成实体类代码
+		String classCode = GenEntityCode.genClass(parmMap);
+		// 生成Mapper代码
+		Map<String, String> codeMap = new HashMap<String, String>();
+		codeMap.put("classCode", classCode);
+		codeMap.put("mapperCode", "");
+		return codeMap;
 	}
 
 

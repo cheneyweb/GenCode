@@ -1,0 +1,35 @@
+package $!parmMap.get('packageName')
+
+/**
+ * @Module: $!entity.className
+ * @Description: 
+ * @author: $!parmMap.get('author')
+ * @date: $!toolBox.getCurrentTime()
+ */
+public class $!entity.className#if("$!entity.extendsClass"!="") extends $!entity.extendsClass#end #if("$!entity.implementsInterface"!="")implements $!entity.implementsInterface#end{
+#foreach($!column in $!columnMap.entrySet())
+	/**
+	 * $!commentMap.get($!column.key)
+	 */
+	private $!column.value $!column.key;
+#end
+
+#foreach($!column in $!columnMap.entrySet())
+	/**
+	 * 取得$!column.key
+	 * 
+	 * @return $!column.value $!commentMap.get($!column.key)
+	 */
+	public $!column.value get$!toolBox.getUpperFirst($!column.key)(){
+		 return $!column.key;
+	}
+	/**
+	 * 设置$!column.key
+	 * 
+	 * @param $!column.key
+	 */
+	public void set$!toolBox.getUpperFirst($!column.key) ($!column.value $!column.key){
+		 this.$!column.key = $!column.key;
+	}
+#end
+}

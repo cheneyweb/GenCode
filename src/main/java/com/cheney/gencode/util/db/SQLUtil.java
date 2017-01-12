@@ -6,6 +6,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.cheney.gencode.enums.EnumDataType;
+import com.cheney.gencode.util.string.StringUtil;
+
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.create.table.ColumnDefinition;
 import net.sf.jsqlparser.statement.create.table.CreateTable;
@@ -24,16 +27,22 @@ public class SQLUtil {
 	 * <p>author : xuyushuai</p>
 	 * <p>date : 2015年4月28日 上午11:13:13</p>
 	 * @param createTableSql
+	 *  @param separator
 	 * @return
 	 */
-	public static Map<String, String> getColumnNameAndTypeMap(String createTableSql) {
+	public static Map<String, String> getColumnNameAndTypeMap(String createTableSql,String separator) {
 		Map<String, String> resultMap = new HashMap<String, String>();
 			try {
 				createTableSql = createTableSql.trim();
 				CreateTable createTableStmt = (CreateTable)CCJSqlParserUtil.parse(createTableSql);
 				List<ColumnDefinition> columnDefinitionList = createTableStmt.getColumnDefinitions();
 				for(ColumnDefinition columnDefinition : columnDefinitionList){
-					resultMap.put(columnDefinition.getColumnName(),columnDefinition.getColDataType().getDataType());
+					String columnName = columnDefinition.getColumnName();
+					String dataType = columnDefinition.getColDataType().getDataType();
+					// 将数据库列名和类型，转换成Java属性名和类型
+					columnName = StringUtil.columnToAttribute(columnName, separator);
+					dataType = EnumDataType.toMap().get(dataType);
+					resultMap.put(columnName,dataType);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -47,9 +56,10 @@ public class SQLUtil {
 	 * <p>author : xuyushuai</p>
 	 * <p>date : 2015年4月28日 上午11:13:50</p>
 	 * @param columnCommentSql
+	 * @param separator
 	 * @return
 	 */
-	public static Map<String, String> getColumnNameAndCommentMap(String columnCommentSql) {
+	public static Map<String, String> getColumnNameAndCommentMap(String columnCommentSql,String separator) {
 		Map<String, String> map = new HashMap<String, String>();
 		try {
 			if(StringUtils.isNotBlank(columnCommentSql)){
@@ -59,6 +69,8 @@ public class SQLUtil {
 					String columnAndComment = column.split("\\.")[1];
 					String name = columnAndComment.split(" ")[0];
 					String comment = columnAndComment.split(" ")[2].substring(1, columnAndComment.split(" ")[2].length() - 1);
+					// 将数据库列名，转换成Java属性名
+					name = StringUtil.columnToAttribute(name, separator);
 					map.put(name, comment);
 				}
 			}
