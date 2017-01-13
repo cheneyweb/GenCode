@@ -23,6 +23,30 @@ import net.sf.jsqlparser.statement.create.table.CreateTable;
  */
 public class SQLUtil {
 	/**
+	 * 根据SQL解析表的列名和对应属性名
+	 * @param createTableSql
+	 * @param separator
+	 * @return
+	 */
+	public static Map<String, String> getColumnNameAndAttrMap(String createTableSql,String separator) {
+		Map<String, String> resultMap = new HashMap<String, String>();
+		try {
+			createTableSql = createTableSql.trim();
+			CreateTable createTableStmt = (CreateTable)CCJSqlParserUtil.parse(createTableSql);
+			List<ColumnDefinition> columnDefinitionList = createTableStmt.getColumnDefinitions();
+			for(ColumnDefinition columnDefinition : columnDefinitionList){
+				String columnName = columnDefinition.getColumnName();
+				// 将数据库列名和类型，转换成Java属性名和类型
+				String attrName = StringUtil.columnToAttribute(columnName, separator);
+				resultMap.put(columnName,attrName);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	return resultMap;
+	}
+	/**
 	 * <p>Title: 根据SQL解析表的列名和类型</p>
 	 * <p>author : xuyushuai</p>
 	 * <p>date : 2015年4月28日 上午11:13:13</p>

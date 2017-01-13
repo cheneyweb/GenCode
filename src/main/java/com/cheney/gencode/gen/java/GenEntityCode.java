@@ -3,6 +3,7 @@ package com.cheney.gencode.gen.java;
 import java.util.Map;
 
 import com.cheney.gencode.gen.java.common.GenEntityClassCode;
+import com.cheney.gencode.gen.java.common.GenEntityMapperCode;
 import com.cheney.gencode.gen.java.module.GenEntity;
 import com.cheney.gencode.module.Entity;
 
@@ -29,6 +30,26 @@ public class GenEntityCode {
 			String json = parmMap.get("json");
 			Entity entity = GenEntity.getEntity(json);
 			code = GenEntityClassCode.gen(parmMap, entity);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return code;
+	}
+	
+	/**
+	 *
+	 * <p>Title: genMapper</p>
+	 * <p>author : xuyushuai</p>
+	 * <p>date : 2014年10月22日 下午6:02:32</p>
+	 * 
+	 * @param json
+	 */
+	public static String genMapper(Map<String,String> parmMap) {
+		String code = null;
+		try {
+			String json = parmMap.get("json");
+			Entity entity = GenEntity.getEntity(json);
+			code = GenEntityMapperCode.gen(parmMap, entity);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

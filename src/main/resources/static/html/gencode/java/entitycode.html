@@ -11,20 +11,24 @@
     </div>
     <br/>
     <br/>
-    <div class="col-lg-6">
-        <textarea class="form-control" id="myTextarea" v-model="query.createTableSql"></textarea>
+    <div class="row">
+	    <div class="col-lg-6">
+	        <textarea class="form-control" id="myTextarea" v-model="query.createTableSql"></textarea>
+	    </div>
+	    <div class="col-lg-6">
+	        <textarea class="form-control" id="myTextarea2" v-model="query.columnCommentSql"></textarea>
+	    </div>
     </div>
-    <div class="col-lg-6">
-        <textarea class="form-control" id="myTextarea2" v-model="query.columnCommentSql"></textarea>
+    <div class="row">
+	    <div class="col-lg-6">
+	        <pre id="codeLeft" class="prettyprint">
+			</pre>
+	    </div>
+	    <div class="col-lg-6">
+	        <pre id="codeRight" class="prettyprint">
+			</pre>
+	    </div>
     </div>
-    <div class="col-lg-12">
-        <pre id="codeLeft" class="prettyprint">
-		</pre>
-    </div>
-    <!-- <div class="col-lg-6">
-        <pre id="codeRight" class="prettyprint">
-		</pre>
-    </div> -->
 </div>
 <script>
 Vue.http.options.emulateJSON = true;
@@ -40,6 +44,7 @@ $(function() {
                 columnCommentSql: ''
             },
             codeLeft: '',
+            codeRight:'',
             // 返回信息
             respMsg: ''
         },
@@ -53,10 +58,13 @@ $(function() {
                 vm.$http.post(vm.genUrl, vm.query)
                     .then((sucResp) => {
                         vm.codeLeft = sucResp.data.classCode
+                        vm.codeRight = sucResp.data.mapperCode
                         //等待100毫秒后执行代码高亮渲染
                         //setTimeout("prettyPrint()", 100)
                         cmLeft.setValue(vm.codeLeft)
                         cmLeft.setSize('auto', 'auto')
+                        cmRight.setValue(vm.codeRight)
+                        cmRight.setSize('auto', 'auto')
                     }, (errResp) => {
                         vm.respMsg = errResp.data
                     });
@@ -106,6 +114,14 @@ $(function() {
 	    htmlMode: true,
 	    smartIndent: false,
 	    lineNumbers: true
-	}); 
+	});
+ 	// 右侧区域代码编辑框
+    var cmRight = CodeMirror(codeRight, {
+	    mode: "text/x-java",
+	    lineWrapping: true,
+	    htmlMode: true,
+	    smartIndent: false,
+	    lineNumbers: true
+	});
 });
 </script>

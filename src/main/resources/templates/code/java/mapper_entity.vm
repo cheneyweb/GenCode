@@ -1,0 +1,5 @@
+<resultMap id="$!toolBox.getLowerFirst($!entity.className)Result" type="$!entity.className">
+#foreach($!column in $!columnMap.entrySet())
+	<result property="$!column.value" column="$!column.key"/>
+#end
+</resultMap>

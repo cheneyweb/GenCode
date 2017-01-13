@@ -11,6 +11,14 @@ import com.cheney.gencode.module.Method;
 
 public class ToolBox {
 	/**
+	 * 首字母小写
+	 * @param str
+	 * @return 首字母小写字符串
+	 */
+	public String getLowerFirst(String str){
+		return StringUtils.uncapitalize(str);
+	}
+	/**
 	 * 首字母大写
 	 * @param str
 	 * @return 首字母大写字符串

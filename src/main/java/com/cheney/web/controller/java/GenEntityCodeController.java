@@ -38,12 +38,13 @@ public class GenEntityCodeController {
 		parmMap.put("author","");
 		parmMap.put("createTableSql",createTableSql);
 		parmMap.put("columnCommentSql",columnCommentSql);
-		// 生成实体类代码
+		// 生成实体类代码和Mapper代码
 		String classCode = GenEntityCode.genClass(parmMap);
+		String mapperCode = GenEntityCode.genMapper(parmMap);
 		// 生成Mapper代码
 		Map<String, String> codeMap = new HashMap<String, String>();
 		codeMap.put("classCode", classCode);
-		codeMap.put("mapperCode", "");
+		codeMap.put("mapperCode", mapperCode);
 		return codeMap;
 	}
 

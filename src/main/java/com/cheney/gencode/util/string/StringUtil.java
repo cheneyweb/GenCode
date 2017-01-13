@@ -33,7 +33,7 @@ public class StringUtil {
 				attribute += StringUtils.capitalize(s);
 			}
 			// 首字母小写
-			attribute = StringUtils.uncapitalize(column);
+			attribute = StringUtils.uncapitalize(attribute);
 		}
 		return attribute;
 	}
