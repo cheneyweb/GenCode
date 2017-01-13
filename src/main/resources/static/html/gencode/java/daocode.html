@@ -62,7 +62,7 @@ $(function() {
             },
             addMethod: function(){
             	var str = editor.getValue()
-            	var sn = str.indexOf(']') - 1
+            	var sn = str.lastIndexOf(']') - 1
             	str = insertString(str,insertStr,sn)
                 editor.setValue(str)
             }
@@ -78,8 +78,16 @@ $(function() {
     });
     editor.setSize('auto', 'auto');
     //var defaultstr = '<method returnType="int" inParamTypes="String" inParams="name">methodName</method>' + '\n';
-    var insertStr = ','+'\n'+'{"name":"methodName","inParamMap":{"parm":"String"},"returnType":"int"}';
-    var defaultstr = '['+'\n'+ '{"name":"methodName","inParamMap":{"parm":"String"},"returnType":"int"}' +'\n'+']'
+    var insertStr = ','+'\n'+'{"name":"getSingleParm","inParamMap":{"parm":"String"},"returnType":"int"}';
+    var defaultstr = '['+'\n'+ '{"name":"getSingleParm","inParamMap":{"parm":"String"},"returnType":"int"},' +'\n'+
+                     '{"name":"getMultiParm","inParamMap":{"parm":"String","parm2":"Long"},"returnType":"int"},' +'\n'+
+                     '{"name":"getMapParm","inParamMap":{"parm":"Map<String,String>"},"returnType":"int"},' +'\n'+
+                     '{"name":"getListParm","inParamMap":{"parm":"List<String>"},"returnType":"int"},' +'\n'+
+                     '{"name":"getArrayParm","inParamMap":{"parm":"String[]"},"returnType":"int"},' +'\n'+
+                     '{"name":"insertObj","inParamMap":{"parm":"Object"},"returnType":"int"},' +'\n'+
+                     '{"name":"deleteObj","inParamMap":{"parm":"Object"},"returnType":"int"},' +'\n'+
+                     '{"name":"updateObj","inParamMap":{"parm":"Object"},"returnType":"int"}' +'\n'+
+                     ']'
     if (editor.getValue() == '') {
         editor.setValue(defaultstr);
     }

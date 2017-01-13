@@ -8,6 +8,7 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
 import com.cheney.gencode.module.Method;
+import com.cheney.gencode.util.vm.ToolBox;
 
 public class GenMapperCode {
 	/**
@@ -19,20 +20,16 @@ public class GenMapperCode {
 	 * @return 接口代码
 	 */ 
 	public static String gen(Map<String, String> parmMap, List<Method> methods) {
-		// 入参设置
-//		String moduleName = parmMap.get("moduleName");
-		// String prefix = parmMap.get("prefix");
-//		String basepackage = parmMap.get("basepackage");
-		// 生成Mapper代码
-		// String interfaceName = prefix + moduleName;
 		String code = "";
 
 		VelocityEngine velocityEngine = new VelocityEngine();
 		VelocityContext velocityContext = new VelocityContext();
 		StringWriter stringWriter = new StringWriter();
-		velocityContext.put("id", "id");
-		velocityContext.put("paramterType", "paramterType");
-		velocityEngine.mergeTemplate("src/main/resources/templates/code/java/mapper_method.vm", "UTF-8", velocityContext,stringWriter);
+		velocityContext.put("methods", methods);
+		velocityContext.put("parmMap", parmMap);
+		velocityContext.put("toolBox", new ToolBox());
+		velocityEngine.mergeTemplate("src/main/resources/templates/code/java/mapper_method.vm", "UTF-8",
+				velocityContext, stringWriter);
 		code += stringWriter.toString();
 
 		return code;

@@ -1,24 +1,89 @@
 <mapper namespace="com.dao.Dao">
+##遍历所有方法开始
+#foreach( $!method in $!methods )
+##查询方法开始
+#if($!toolBox.getMethodType($!method)=="select")
+##单参数处理
+#if($!toolBox.getParmType($!method.inParamMap)=="single")
 
-public List<XXBean> getXXBeanList(String xxCode);
-<select id="getXXXBeanList" parameterType="java.lang.String" resultType="XXBean">
-	select t.* from tableName t where t.id= #{id}  
+#foreach($!inparm in $!method.inParamMap.entrySet())
+<select id="$!method.name" parameterType="$!inparm.value" resultType="$!method.returnType">
+	select t.* from tableName t where t.$!inparm.key = #{$!inparm.key}
 </select>
+#end
+#end
+##多参数处理
+#if($!toolBox.getParmType($!method.inParamMap)=="multi")
 
-public List<XXXBean> getXXXBeanList(String xxId, String xxCode);
-<select id="getXXXBeanList" resultType="XXBean">
-	select t.* from tableName where id = #{0} and name = #{1}
+<select id="$!method.name" resultType="$!method.returnType">
+	select t.* from tableName t where #foreach($!inparm in $!method.inParamMap.entrySet())t.$!inparm.key = #{$!toolBox.sub($!velocityCount,1)}#if($!method.inParamMap.size() != $!velocityCount) and #end#end
+	
 </select>
+#end
+##Map参数处理
+#if($!toolBox.getParmType($!method.inParamMap)=="map")
 
-public List<XXXBean> getXXXBeanList(HashMap map);  
-<select id="getXXXBeanList" parameterType="hashmap" resultType="XXBean">
-　　select 字段... from XXX where id=#{xxId} code = #{xxCode}
-</select> 
-
-public List<XXXBean> getXXXBeanList(List<String> list);  
-<select id="getXXXBeanList" resultType="XXBean">
-　　select 字段... from XXX where id in
-　　<foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
-　　　　#{item}  
-　　</foreach>  
+#foreach($!inparm in $!method.inParamMap.entrySet())
+<select id="$!method.name" parameterType="hashmap" resultType="$!method.returnType">
+	select t.* from tableName t where t.column = #{key}
 </select>
+#end
+#end
+##List参数处理
+#if($!toolBox.getParmType($!method.inParamMap)=="list")
+
+<select id="$!method.name" resultType="$!method.returnType">
+	select t.* from tableName t where t.id in
+	<foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
+		#{item}
+	</foreach>  
+</select>
+#end
+##数组参数处理
+#if($!toolBox.getParmType($!method.inParamMap)=="array")
+
+<select id="$!method.name" resultType="$!method.returnType">
+	select t.* from tableName t where t.id in
+	<foreach item="item" index="index" collection="array" open="(" separator="," close=")">  
+		#{item}
+	</foreach>  
+</select>
+#end
+##查询方法结束
+#end
+##插入数据处理
+#if($!toolBox.getMethodType($!method)=="insert")
+
+<insert id="$!method.name" parameterType="ExampleObject" useGeneratedKeys="true" keyProperty="id">
+	insert into tableName (column1,column2)
+	values (#{attr1},#{attr2})
+</insert>
+#end
+##更新数据处理
+#if($!toolBox.getMethodType($!method)=="update")
+
+<update id="$!method.name" parameterType="ExampleObject">
+	update tablename t set 
+	t.column1=#{attr1},
+	t.column2=#{attr2}
+	where t.id=#{id}
+</update>
+#end
+##删除数据处理
+#if($!toolBox.getMethodType($!method)=="delete")
+
+<delete id="$!method.name" parameterType="ExampleObject">
+	delete from tablename t 
+	where t.id=#{id}
+</update>
+#end
+#if($!toolBox.getMethodType($!method)=="default")
+
+<!-- $!method.name:该方法名无法识别具体SQL操作类型，增删改查的方法名需要分别用如下前缀开头才能识别 -->
+<!-- insert:"insert","add" -->
+<!-- delete:"delete","remove" -->
+<!-- update:"update","edit" -->
+<!-- select:"select","get","query" -->
+#end
+##遍历所有方法结束
+#end
