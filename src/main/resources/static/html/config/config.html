@@ -1,14 +1,7 @@
 <div id="config">
     <h1 class="page-header">{{title}}</h1>
-    <div class="input-group col-lg-6">
-        <div class="input-group-addon">Author</div>
-        <input class="form-control " type="text" placeholder="input your name,example:'cheney'" v-model="globalConfig.author" />
-    </div>
-     <br/>
-     <br/>
-    <div class="input-group col-lg-6">
-        <div class="input-group-addon">Package</div>
-        <input class="form-control" type="text" placeholder="input package name,example:'com.demo.test'" v-model="globalConfig.basepackage" />
+    <div class="col-lg-12">
+        <textarea class="form-control" id="jsonTextarea" v-model="query.json"></textarea>
     </div>
      <br/>
      <br/>
@@ -23,29 +16,63 @@ $(function() {
     new Vue({
         el: '#config',
         data: {
-            genUrl: '/saveglobal.html',
+        	getUrl: '/config/getglobal.json',
+            genUrl: '/config/saveglobal.json',
             title: 'Global Config',
-            globalConfig: {
-                author: '',
-                basepackage: ''
+            query: {
+                json:''
             },
             // 返回信息
             respMsg: ''
         },
+        created(){
+        	var vm = this
+        	vm.$http.post(vm.getUrl, vm.query)
+            .then((sucResp) => {
+            	vm.json = sucResp.data.globalconfig
+            	vm.respMsg = sucResp.data.respMsg
+            	if(vm.respMsg == 'Y'){
+            		editorJson.setValue(vm.json);
+                }
+            }, (errResp) => {
+                vm.respMsg = errResp.data.respMsg
+            });
+        },
         methods: {
             save: function() {
                 var vm = this
+                vm.query.json = editorJson.getValue()
                 vm.$http.post(vm.genUrl, vm.query)
-                    .then((sucResp) => {}, (errResp) => {
-                        vm.respMsg = errResp.data
+                    .then((sucResp) => {
+                    	vm.respMsg = sucResp.data.respMsg
+                    	if(vm.respMsg == 'Y'){
+                    		alert('保存系统配置成功')
+                        }else{
+                        	alert(vm.respMsg)
+                        }
+                    }, (errResp) => {
+                        vm.respMsg = errResp.data.respMsg
                     });
             },
             clean: function() {
                 var vm = this
-                vm.globalConfig.author = ''
-                vm.globalConfig.basepackage = ''
+                vm.json = ''
+                editorJson.setValue('')
             }
         }
     });
+ 	// 加载高亮代码编辑器
+    var editorJson = CodeMirror.fromTextArea(jsonTextarea, {
+    	mode: "javascript",
+        json: true,
+        lineWrapping: "true",
+        smartIndent: false,
+        lineNumbers: true
+    });
+    editorJson.setSize('auto', 'auto');
+    
+    if (editorJson.getValue() == '') {
+    	editorJson.setValue('{"basepackage":"com.cheney","author":"cheney"}');
+    }
 });
 </script>
