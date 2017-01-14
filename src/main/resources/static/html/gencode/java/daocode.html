@@ -7,9 +7,9 @@
     <br/>
      <br/>
     <div class="col-lg-12">
-        <button id="addMethod" type="button" class="btn btn-default" @click="addMethod()">Add Method</button>
+        <button id="addMethod" type="button" class="btn btn-default" @click="addMethod">Add Method</button>
         <button id="genCode" type="button" class="btn btn-default" @click="genCode">Gen Code</button>
-        <button id="exportCode" type="button" class="btn btn-default">Export Code</button>
+        <button id="exportCode" type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="导出功能正在建设中...">Export Code</button>
     </div>
     <br/>
     <br/>
@@ -108,6 +108,8 @@ $(function() {
 	    smartIndent: false,
 	    lineNumbers: true
 	});
+ 	// 初始化冒泡提示
+    $('[data-toggle="tooltip"]').tooltip();
 });
 // 插入字符串
 function insertString(str,insertStr,sn){

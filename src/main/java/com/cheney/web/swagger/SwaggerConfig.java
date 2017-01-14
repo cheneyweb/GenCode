@@ -26,8 +26,8 @@ public class SwaggerConfig {
     
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("GenCode的API接口文档")
-                .description("关于本项目的所有RESTful接口，提供web或app访问")
+                .title("GenCode的RESTful相关API接口文档")
+                .description("关于本项目的所有RESTful接口，涵盖所有Controller控制器，提供web或app访问")
                 .termsOfServiceUrl("http://gencode.duapp.com/")
                 .version("1.0")
                 .build();
