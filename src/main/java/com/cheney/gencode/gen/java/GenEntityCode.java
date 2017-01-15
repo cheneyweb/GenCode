@@ -1,6 +1,7 @@
 package com.cheney.gencode.gen.java;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 import com.cheney.gencode.gen.java.common.GenEntityClassCode;
 import com.cheney.gencode.gen.java.common.GenEntityMapperCode;
@@ -16,6 +17,7 @@ import com.cheney.gencode.module.Entity;
  *
  */
 public class GenEntityCode {
+	private static Logger log = Logger.getLogger(GenEntityCode.class.getName());
 	/**
 	 *
 	 * <p>Title: genClass</p>
@@ -31,7 +33,7 @@ public class GenEntityCode {
 			Entity entity = GenEntity.getEntity(json);
 			code = GenEntityClassCode.gen(parmMap, entity);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info("入参JSON错误");
 		}
 		return code;
 	}
@@ -51,7 +53,7 @@ public class GenEntityCode {
 			Entity entity = GenEntity.getEntity(json);
 			code = GenEntityMapperCode.gen(parmMap, entity);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info("入参JSON错误");
 		}
 		return code;
 	}

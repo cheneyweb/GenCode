@@ -47,9 +47,13 @@ public class GenDaoCodeController {
 		String mapperCode = GenDaoCode.genMapper(parmMap);
 		// 返回数据
 		Map<String, String> codeMap = new HashMap<String, String>();
-		codeMap.put("interfaceCode", interfaceCode);
-		codeMap.put("mapperCode", mapperCode);
-
+		if(interfaceCode != null && mapperCode != null){
+			codeMap.put("interfaceCode", interfaceCode);
+			codeMap.put("mapperCode", mapperCode);
+			codeMap.put("respMsg", "Y");
+		}else{
+			codeMap.put("respMsg", "输入配置信息错误");
+		}
 		return codeMap;
 	}
 }

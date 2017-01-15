@@ -24,15 +24,12 @@ public class GenMethod {
      * @param methodList 
      * 
      * @return List<Method>
+     * @throws Exception 
      */
-    public static List<Method> getMethods(String json) {        
+    public static List<Method> getMethods(String json) throws Exception {        
         List<Method> methodList = null;
-		try {
-			ObjectMapper objectMapper = new ObjectMapper();
-			methodList = objectMapper.readValue(json,new TypeReference<ArrayList<Method>>(){});
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
+		ObjectMapper objectMapper = new ObjectMapper();
+		methodList = objectMapper.readValue(json,new TypeReference<ArrayList<Method>>(){});
 		return methodList;
     }
 }

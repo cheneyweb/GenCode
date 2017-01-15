@@ -1,6 +1,7 @@
 package com.cheney.gencode.gen.java;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 import com.cheney.gencode.gen.java.common.GenImplCode;
 import com.cheney.gencode.gen.java.common.GenInterfaceCode;
@@ -16,7 +17,7 @@ import com.cheney.gencode.module.Service;
  *
  */
 public class GenServiceCode {
-
+	private static Logger log = Logger.getLogger(GenServiceCode.class.getName());
 	/**
 	 * <p>Title: genInterface</p>
 	 * <p>author : xuyushuai</p>
@@ -32,7 +33,7 @@ public class GenServiceCode {
 			parmMap.put("moduleName","Service");
 			code = GenInterfaceCode.gen(parmMap,service.getMethods());
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info("入参JSON错误");
 		}
 		return code;
 	}
@@ -52,7 +53,7 @@ public class GenServiceCode {
 			parmMap.put("moduleName","Service");
 			code = GenImplCode.gen(parmMap,service.getMethods());
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info("入参JSON错误");
 		}
 		return code;
 	}

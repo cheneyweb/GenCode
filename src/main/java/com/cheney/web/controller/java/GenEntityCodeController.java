@@ -48,8 +48,13 @@ public class GenEntityCodeController {
 		String mapperCode = GenEntityCode.genMapper(parmMap);
 		// 生成Mapper代码
 		Map<String, String> codeMap = new HashMap<String, String>();
-		codeMap.put("classCode", classCode);
-		codeMap.put("mapperCode", mapperCode);
+		if(classCode != null && mapperCode != null){
+			codeMap.put("classCode", classCode);
+			codeMap.put("mapperCode", mapperCode);
+			codeMap.put("respMsg", "Y");
+		}else{
+			codeMap.put("respMsg", "输入配置信息错误");
+		}
 		return codeMap;
 	}
 

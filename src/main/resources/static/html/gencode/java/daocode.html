@@ -1,5 +1,7 @@
 <div id="daocode">
     <h1 class="page-header">{{title}}</h1>
+    <!-- 操作提示 -->
+	<respmsg :resp-msg="respMsg"></respmsg>
     <div class="input-group col-lg-6">
         <div class="input-group-addon">Prefix</div>
         <input class="form-control" type="text" placeholder="Example: input 'User' if you want 'UserDao'" v-model="query.prefix">
@@ -41,7 +43,7 @@ $(function() {
             codeLeft: '',
             codeRight:'',
             // 返回信息
-            respMsg: ''
+            respMsg: 'Y'
         },
         methods: {
             genCode: function() {
@@ -50,12 +52,15 @@ $(function() {
                 vm.query.json = editor.getValue()
                 vm.$http.post(vm.genUrl, vm.query)
                     .then((sucResp) => {
-                        vm.codeLeft = sucResp.data.interfaceCode
-                        vm.codeRight = sucResp.data.mapperCode
-                        cmLeft.setValue(vm.codeLeft)
-                        cmLeft.setSize('auto', 'auto')
-                        cmRight.setValue(vm.codeRight)
-                        cmRight.setSize('auto', 'auto')
+                    	vm.respMsg = sucResp.data.respMsg
+                    	if(vm.respMsg == 'Y'){
+	                        vm.codeLeft = sucResp.data.interfaceCode
+	                        vm.codeRight = sucResp.data.mapperCode
+	                        cmLeft.setValue(vm.codeLeft)
+	                        cmLeft.setSize('auto', 'auto')
+	                        cmRight.setValue(vm.codeRight)
+	                        cmRight.setSize('auto', 'auto')
+                    	}
                     }, (errResp) => {
                         vm.respMsg = errResp.data
                     });

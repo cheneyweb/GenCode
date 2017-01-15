@@ -1,5 +1,7 @@
 <div id="entitycode">
     <h1 class="page-header">{{title}}</h1>
+    <!-- 操作提示 -->
+	<respmsg :resp-msg="respMsg"></respmsg>
     <div class="col-lg-12">
         <textarea class="form-control" id="jsonTextarea" v-model="query.json"></textarea>
     </div>
@@ -46,7 +48,7 @@ $(function() {
             codeLeft: '',
             codeRight:'',
             // 返回信息
-            respMsg: ''
+            respMsg: 'Y'
         },
         methods: {
             genCode: function() {
@@ -57,14 +59,17 @@ $(function() {
                 vm.query.columnCommentSql = editor2.getValue()
                 vm.$http.post(vm.genUrl, vm.query)
                     .then((sucResp) => {
-                        vm.codeLeft = sucResp.data.classCode
-                        vm.codeRight = sucResp.data.mapperCode
-                        //等待100毫秒后执行代码高亮渲染
-                        //setTimeout("prettyPrint()", 100)
-                        cmLeft.setValue(vm.codeLeft)
-                        cmLeft.setSize('auto', 'auto')
-                        cmRight.setValue(vm.codeRight)
-                        cmRight.setSize('auto', 'auto')
+                    	vm.respMsg = sucResp.data.respMsg
+                    	if(vm.respMsg == 'Y'){
+	                        vm.codeLeft = sucResp.data.classCode
+	                        vm.codeRight = sucResp.data.mapperCode
+	                        //等待100毫秒后执行代码高亮渲染
+	                        //setTimeout("prettyPrint()", 100)
+	                        cmLeft.setValue(vm.codeLeft)
+	                        cmLeft.setSize('auto', 'auto')
+	                        cmRight.setValue(vm.codeRight)
+	                        cmRight.setSize('auto', 'auto')
+                    	}
                     }, (errResp) => {
                         vm.respMsg = errResp.data
                     });

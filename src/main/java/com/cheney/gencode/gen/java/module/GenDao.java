@@ -24,14 +24,9 @@ public class GenDao {
 	 * @return Dao
 	 */
 	public static Dao getDao(String json) throws Exception {
-		Dao dao = null;
-		try {
-			dao = new Dao();
-			List<Method> methods = GenMethod.getMethods(json);
-			dao.setMethods(methods);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		Dao dao = new Dao();
+		List<Method> methods = GenMethod.getMethods(json);
+		dao.setMethods(methods);
 		return dao;
 	}
 }

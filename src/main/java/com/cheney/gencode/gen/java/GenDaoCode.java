@@ -9,6 +9,7 @@
 package com.cheney.gencode.gen.java;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 import com.cheney.gencode.gen.java.common.GenInterfaceCode;
 import com.cheney.gencode.gen.java.common.GenMapperCode;
@@ -24,7 +25,7 @@ import com.cheney.gencode.module.Dao;
  *
  */
 public class GenDaoCode {
-
+	private static Logger log = Logger.getLogger(GenDaoCode.class.getName());
 	/**
 	 * <p>Title: genInterface</p>
 	 * <p>author : xuyushuai</p>
@@ -40,7 +41,7 @@ public class GenDaoCode {
 			parmMap.put("moduleName","Dao");
 			code = GenInterfaceCode.gen(parmMap, dao.getMethods());
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info("入参JSON错误");
 		}
 		return code;
 	}
@@ -59,7 +60,7 @@ public class GenDaoCode {
 			Dao dao = GenDao.getDao(json);
 			code = GenMapperCode.gen(parmMap, dao.getMethods());
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info("入参JSON错误");
 		}
 		return code;
 	}

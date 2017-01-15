@@ -47,9 +47,13 @@ public class GenJavaCodeController {
 		String implCode = GenServiceCode.genImpl(parmMap);
 		// 返回数据
 		Map<String, String> codeMap = new HashMap<String, String>();
-		codeMap.put("interfaceCode", interfaceCode);
-		codeMap.put("implCode", implCode);
-
+		if(interfaceCode != null && implCode != null){
+			codeMap.put("interfaceCode", interfaceCode);
+			codeMap.put("implCode", implCode);
+			codeMap.put("respMsg", "Y");
+		}else{
+			codeMap.put("respMsg", "输入配置信息错误");
+		}
 		return codeMap;
 	}
 }

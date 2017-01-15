@@ -30,10 +30,8 @@ public class ConfigController {
 		if(StringUtils.isNotEmpty(globalconfig)){
 			globalconfig = new String(Base64.decodeBase64(globalconfig.getBytes()));
 			resultMap.put("globalconfig", globalconfig);
-			resultMap.put("respMsg", "Y");
-		}else{
-			resultMap.put("respMsg", "系统配置不存在");
 		}
+		resultMap.put("respMsg", "Y");
 		return resultMap;
 	}
 	

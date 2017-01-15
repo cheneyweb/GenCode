@@ -22,16 +22,12 @@ public class GenService {
 	 * 
 	 * @param json
 	 * @return Service
+	 * @throws Exception 
 	 */
-	public static Service getService(String json){
-		Service service = null;
-		try {
-			service = new Service();
-			List<Method> methods = GenMethod.getMethods(json);
-			service.setMethods(methods);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public static Service getService(String json) throws Exception{
+		Service service = new Service();
+		List<Method> methods = GenMethod.getMethods(json);
+		service.setMethods(methods);
 		return service;
 	}
 }

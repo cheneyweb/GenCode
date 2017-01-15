@@ -1,5 +1,7 @@
 package com.cheney.gencode.gen.java.module;
 
+import java.util.logging.Logger;
+
 import org.apache.commons.lang.StringUtils;
 
 import com.cheney.gencode.module.GlobalConfig;
@@ -14,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *
  */
 public class GenGlobalConfig {
+	private static Logger log = Logger.getLogger(GenGlobalConfig.class.getName());
 	
 	public static GlobalConfig getGlobalConfig(String json) {
 		try {
@@ -24,7 +27,7 @@ public class GenGlobalConfig {
 				return new GlobalConfig();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info("配置JSON不正确");
 		}
 		return null;
 	}

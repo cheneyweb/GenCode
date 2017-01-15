@@ -1,5 +1,7 @@
 <div id="config">
     <h1 class="page-header">{{title}}</h1>
+    <!-- 操作提示 -->
+	<respmsg :resp-msg="respMsg"></respmsg>
     <div class="col-lg-12">
         <textarea class="form-control" id="jsonTextarea" v-model="query.json"></textarea>
     </div>
@@ -47,8 +49,6 @@ $(function() {
                     	vm.respMsg = sucResp.data.respMsg
                     	if(vm.respMsg == 'Y'){
                     		alert('保存系统配置成功')
-                        }else{
-                        	alert(vm.respMsg)
                         }
                     }, (errResp) => {
                         vm.respMsg = errResp.data.respMsg
