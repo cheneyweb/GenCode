@@ -7,7 +7,7 @@
 
 项目预览(Project Preview)
 >
-	http://gencode.duapp.com
+	[演示链接](http://gencode.duapp.com) 
 
 解析引擎层次
 >
