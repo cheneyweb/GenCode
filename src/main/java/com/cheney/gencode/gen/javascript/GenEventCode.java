@@ -2,6 +2,7 @@ package com.cheney.gencode.gen.javascript;
 
 import java.io.StringWriter;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -22,13 +23,16 @@ public class GenEventCode {
 	 * @return Jquery版本的Ajax代码
 	 */
 	public static String genJquery(Map<String, String> parmMap) {
-String code = "";
+		String code = "";
 		
-		VelocityEngine velocityEngine = new VelocityEngine();
+		Properties p = new  Properties();
+        //这里加载类路径里的模板而不是文件系统路径里的模板
+        p.setProperty("file.resource.loader.class","org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader" ); 
+		VelocityEngine velocityEngine = new VelocityEngine(p);
 		VelocityContext velocityContext = new VelocityContext();
 		StringWriter stringWriter = new StringWriter();
 		velocityContext.put("type", parmMap.get("type"));
-		velocityEngine.mergeTemplate("src/main/resources/templates/code/javascript/event_jq.vm", "UTF-8", velocityContext,stringWriter);
+		velocityEngine.mergeTemplate("templates/code/javascript/event_jq.vm", "UTF-8", velocityContext,stringWriter);
 		code += stringWriter.toString();
 		
 		return code;
@@ -41,13 +45,16 @@ String code = "";
 	 * @return JavaScript版本的Ajax代码
 	 */
 	public static String genJavaScript(Map<String, String> parmMap) {
-String code = "";
+		String code = "";
 		
-		VelocityEngine velocityEngine = new VelocityEngine();
+		Properties p = new  Properties();
+        //这里加载类路径里的模板而不是文件系统路径里的模板
+        p.setProperty("file.resource.loader.class","org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader" ); 
+		VelocityEngine velocityEngine = new VelocityEngine(p);
 		VelocityContext velocityContext = new VelocityContext();
 		StringWriter stringWriter = new StringWriter();
 		velocityContext.put("type", parmMap.get("type"));
-		velocityEngine.mergeTemplate("src/main/resources/templates/code/javascript/event_js.vm", "UTF-8", velocityContext,stringWriter);
+		velocityEngine.mergeTemplate("templates/code/javascript/event_js.vm", "UTF-8", velocityContext,stringWriter);
 		code += stringWriter.toString();
 		
 		return code;

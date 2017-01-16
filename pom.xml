@@ -36,11 +36,11 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<!-- SpringBoot框架 部署到Tomcat使用 -->
-		<!-- <dependency>
+		<dependency>
         	<groupId>org.springframework.boot</groupId>  
         	<artifactId>spring-boot-starter-tomcat</artifactId>  
         	<scope>provided</scope>
-    	</dependency> -->
+    	</dependency>
 		<!-- Velocity模板 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
