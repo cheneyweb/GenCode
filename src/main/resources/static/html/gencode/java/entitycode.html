@@ -2,16 +2,18 @@
     <h1 class="page-header">{{title}}</h1>
     <!-- 操作提示 -->
 	<respmsg :resp-msg="respMsg"></respmsg>
-    <div class="col-lg-12">
-        <textarea class="form-control" id="jsonTextarea" v-model="query.json"></textarea>
+	<div class="row">
+	    <div class="col-lg-12">
+	        <textarea class="form-control" id="jsonTextarea" v-model="query.json"></textarea>
+	    </div>
+	</div>
+	<br/>
+	<div class="row">
+	    <div class="col-lg-12">
+	        <button type="button" class="btn btn-default" @click="genCode">Gen Code</button>
+	        <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="导出功能正在建设中...">Export Code</button>
+	    </div>
     </div>
-    <br/>
-    <br/>
-    <div class="col-lg-12">
-        <button type="button" class="btn btn-default" @click="genCode">Gen Code</button>
-        <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="导出功能正在建设中...">Export Code</button>
-    </div>
-    <br/>
     <br/>
     <div class="row">
 	    <div class="col-lg-6">

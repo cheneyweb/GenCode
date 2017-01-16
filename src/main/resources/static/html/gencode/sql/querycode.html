@@ -1,7 +1,6 @@
 <div id="querycode">
 	<h1 class="page-header">{{type}}</h1>
-    <br/>
-	<div>
+	<div class="row">
 		<div class="col-sm-2">
 			<select class="form-control" v-model="query.selectedType" @change="genCode">
 	            <option v-for="type in types" :value="type">{{type}}</option>
@@ -9,19 +8,16 @@
 		</div>
 		<button id="exportCode" type="button" class="btn btn-default">Export Code</button>
 	</div>
-
-	<!-- <textarea class="form-control" id="myTextarea" name="myTextarea">$!xml</textarea> -->
-	<br/>
-				
-	<div class="col-lg-6">
-		<pre id="jqueryCode" class="prettyprint">
+	<div class="row">
+		<div class="col-lg-6">
+			<pre id="jqueryCode" class="prettyprint">
 {{code}}
-		</pre>
-	</div>
-				
-	<div class="col-lg-6">
-		<pre id="javaScriptCode" class="prettyprint">
-		</pre>
+			</pre>
+		</div>
+		<div class="col-lg-6">
+			<pre id="javaScriptCode" class="prettyprint">
+			</pre>
+		</div>
 	</div>
 </div>
 

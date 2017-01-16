@@ -2,30 +2,35 @@
     <h1 class="page-header">{{title}}</h1>
     <!-- 操作提示 -->
 	<respmsg :resp-msg="respMsg"></respmsg>
-    <div class="input-group col-lg-6">
-        <div class="input-group-addon">Prefix</div>
-        <input class="form-control" type="text" placeholder="Example: input 'User' if you want 'UserService'" v-model="query.prefix">
+	<div class="row">
+	    <div class="input-group col-lg-6">
+	        <div class="input-group-addon">Prefix</div>
+	        <input class="form-control" type="text" placeholder="Example: input 'User' if you want 'UserService'" v-model="query.prefix">
+	    </div>
     </div>
     <br/>
-     <br/>
-    <div class="col-lg-12">
-        <button id="addMethod" type="button" class="btn btn-default" @click="addMethod">Add Method</button>
-        <button id="genCode" type="button" class="btn btn-default" @click="genCode">Gen Code</button>
-        <button id="exportCode" type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="导出功能正在建设中...">Export Code</button>
+    <div class="row">
+	    <div class="col-lg-12">
+	        <button id="addMethod" type="button" class="btn btn-default" @click="addMethod">Add Method</button>
+	        <button id="genCode" type="button" class="btn btn-default" @click="genCode">Gen Code</button>
+	        <button id="exportCode" type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="导出功能正在建设中...">Export Code</button>
+	    </div>
     </div>
     <br/>
-    <br/>
-    <div class="col-lg-12">
-    	<textarea class="form-control" id="myTextarea" v-model="query.json"></textarea>
+    <div class="row">
+	    <div class="col-lg-12">
+	    	<textarea class="form-control" id="myTextarea" v-model="query.json"></textarea>
+	    </div>
     </div>
-    <br/>
-    <div class="col-lg-6">
-        <pre id="codeLeft" class="prettyprint">
-		</pre>
-    </div>
-    <div class="col-lg-6">
-        <pre id="codeRight" class="prettyprint">
-		</pre>
+    <div class="row">
+	    <div class="col-lg-6">
+	        <pre id="codeLeft" class="prettyprint">
+			</pre>
+	    </div>
+	    <div class="col-lg-6">
+	        <pre id="codeRight" class="prettyprint">
+			</pre>
+	    </div>
     </div>
 </div>
 <script>

@@ -1,70 +1,68 @@
 #if($!left=='index')
-<nav id="sticky-sidebar" class="nav nav-pills nav-stacked">
-    <ul class="nav nav-sidebar">
-        <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/config/config.html')">Global Config</a></li>
-        <li class="nav-item"><a class="nav-link" href="swagger-ui.html">RESTful接口文档</a></li>
-    </ul>
+<nav id="sticky-sidebar" class="nav flex-column">
+    <a class="nav-link" href="javascript:showHtml('/html/config/config.html')">Global Config</a>
+    <a class="nav-link" href="swagger-ui.html">RESTful接口文档</a>
 </nav>
 #end
+
 #if($!left=='foreground')
-<nav id="sticky-sidebar" class="nav nav-pills nav-stacked">
-    <ul class="nav nav-sidebar">
-        <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#html">Html</a></li>
-        <li id="html" class="collapse">
-            <ul>
-                <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/html/headcode.html')">Head</a></li>
-                <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/html/formcode.html')">Form</a></li>
-            </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#javascript">JavaScript</a></li>
-        <li id="javascript" class="collapse">
-            <ul>
-                <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/javascript/ajaxcode.html')">Ajax</a></li>
-                <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/javascript/eventcode.html')">Event</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
+<!-- <nav id="sticky-sidebar" class="nav flex-column"> -->
+<ul id="sticky-sidebar" class="nav flex-column">
+    <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#html">Html</a></li>
+    <li id="html" class="collapse">
+        <ul>
+            <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/html/headcode.html')">Head</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/html/formcode.html')">Form</a></li>
+        </ul>
+    </li>
+    <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#javascript">JavaScript</a></li>
+    <li id="javascript" class="collapse">
+        <ul>
+            <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/javascript/ajaxcode.html')">Ajax</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/javascript/eventcode.html')">Event</a></li>
+        </ul>
+    </li>
+</ul>
+<!-- </nav> -->
 #end
+
 #if($!left=='background')
-<nav id="sticky-sidebar" class="nav nav-pills nav-stacked">
-    <ul class="nav nav-sidebar">
-        <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#java">Java</a></li>
-        <li id="java" class="collapse">
-            <ul>
-                <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/java/entitycode.html')">Entity</a></li>
-                <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/java/daocode.html')">Dao</a></li>
-                <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/java/javacode.html')">Service</a></li>
-            </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#sql">Sql</a></li>
-        <li id="sql" class="collapse">
-            <ul>
-                <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/sql/querycode.html')">Query</a></li>
-                <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/sql/altercode.html')">Alter</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
-#end
-#if($!left=='development')
-<nav id="sticky-sidebar" class="nav nav-pills nav-stacked">
-    <ul class="nav nav-sidebar">
-        
-        <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#linuxbash">LinuxBash</a></li>
-        <li id="linuxbash" class="collapse">
-            <ul>
-                <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/linuxbash/basiccode.html')">Basic</a></li>
-                <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/linuxbash/seniorcode.html')">Senior</a></li>
-            </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#regex">Regex</a></li>
-        <li id="regex" class="collapse">
-            <ul>
-                <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/regex/matchcode.html')">Match</a></li>
-                <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/regex/replacecode.html')">Replace</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
+<!-- <nav id="sticky-sidebar" class="nav nav-pills nav-stacked"> -->
+<ul id="sticky-sidebar" class="nav flex-column">
+    <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#java">Java</a></li>
+    <li id="java" class="collapse">
+        <ul>
+            <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/java/entitycode.html')">Entity</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/java/daocode.html')">Dao</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/java/javacode.html')">Service</a></li>
+        </ul>
+    </li>
+    <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#sql">Sql</a></li>
+    <li id="sql" class="collapse">
+        <ul>
+            <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/sql/querycode.html')">Query</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/sql/altercode.html')">Alter</a></li>
+        </ul>
+    </li>
+</ul>
+<!-- </nav> -->
+#end #if($!left=='development')
+<!-- <nav id="sticky-sidebar" class="nav nav-pills nav-stacked"> -->
+<ul id="sticky-sidebar" class="nav flex-column">
+    <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#linuxbash">LinuxBash</a></li>
+    <li id="linuxbash" class="collapse">
+        <ul>
+            <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/linuxbash/basiccode.html')">Basic</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/linuxbash/seniorcode.html')">Senior</a></li>
+        </ul>
+    </li>
+    <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#regex">Regex</a></li>
+    <li id="regex" class="collapse">
+        <ul>
+            <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/regex/matchcode.html')">Match</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:showHtml('/html/gencode/regex/replacecode.html')">Replace</a></li>
+        </ul>
+    </li>
+</ul>
+<!-- </nav> -->
 #end

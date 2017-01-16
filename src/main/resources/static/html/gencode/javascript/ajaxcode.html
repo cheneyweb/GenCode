@@ -1,17 +1,21 @@
 <div id="ajaxcode">
 	<h1 class="page-header">{{title}}</h1>
-	<div class="col-lg-12">
-		<button type="button" class="btn btn-default" @click="genCode('post')">Gen PostCode</button>
-		<button type="button" class="btn btn-default" @click="genCode('get')">Gen GetCode</button>
-		<button type="button" class="btn btn-default">Export Code</button>
-	</div>				
-	<div class="col-lg-6">
-		<pre id="codeLeft" class="prettyprint">
-		</pre>
+	<div class="row">
+		<div class="col-lg-12">
+			<button type="button" class="btn btn-default" @click="genCode('post')">Gen PostCode</button>
+			<button type="button" class="btn btn-default" @click="genCode('get')">Gen GetCode</button>
+			<button type="button" class="btn btn-default">Export Code</button>
+		</div>
 	</div>
-	<div class="col-lg-6">
-		<pre id="codeRight" class="prettyprint">
-		</pre>
+	<div class="row">
+		<div class="col-lg-6">
+			<pre id="codeLeft" class="prettyprint">
+			</pre>
+		</div>
+		<div class="col-lg-6">
+			<pre id="codeRight" class="prettyprint">
+			</pre>
+		</div>
 	</div>
 </div>
 

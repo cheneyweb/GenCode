@@ -1,20 +1,22 @@
 <div id="eventcode">
 	<h1 class="page-header">{{title}}</h1>
-	<div>
-		<div class="col-sm-2">
+	<div class="row">
+		<div class="col-lg-2">
 			<select class="form-control" v-model="query.selectedType" @change="genCode">
 	            <option v-for="type in types" :value="type">{{type}}</option>
 	        </select>
 		</div>
 		<button id="exportCode" type="button" class="btn btn-default">Export Code</button>
-	</div>		
-	<div class="col-lg-6">
-		<pre id="codeLeft" class="prettyprint">
-		</pre>
 	</div>
-	<div class="col-lg-6">
-		<pre id="codeRight" class="prettyprint">
-		</pre>
+	<div class="row">
+		<div class="col-lg-6">
+			<pre id="codeLeft" class="prettyprint">
+			</pre>
+		</div>
+		<div class="col-lg-6">
+			<pre id="codeRight" class="prettyprint">
+			</pre>
+		</div>
 	</div>
 </div>
 

@@ -1,6 +1,6 @@
 <div id="replacecode">
 	<h1 class="page-header">{{type}}</h1>
-	<div>
+	<div class="row">
 		<div class="col-lg-2">
 		<select id="gencode" class="form-control" @change="genCode">
 			<option value=""></option>
@@ -9,13 +9,15 @@
 		</div>
 		<button id="exportCode" type="button" class="btn btn-default">Export Code</button>
 	</div>
-	<div class="col-lg-6">
-		<pre id="codeLeft" class="prettyprint">
-		</pre>
-	</div>				
-	<div class="col-lg-6">
-		<pre id="codeRight" class="prettyprint">
-		</pre>
+	<div class="row">
+		<div class="col-lg-6">
+			<pre id="codeLeft" class="prettyprint">
+			</pre>
+		</div>				
+		<div class="col-lg-6">
+			<pre id="codeRight" class="prettyprint">
+			</pre>
+		</div>
 	</div>
 </div>
 
