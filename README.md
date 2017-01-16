@@ -6,8 +6,7 @@
 	未来还会拓展PHP，JavaScript，HTML，SQL，Android，IOS，LinuxShell等语言代码的一键生成，GenCode的目标是——最懒程序员！
 
 项目预览(Project Preview)
->
-	[演示链接](http://gencode.duapp.com) 
+	[演示链接:http://gencode.duapp.com](http://gencode.duapp.com) 
 
 解析引擎层次
 >
