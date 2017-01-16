@@ -4,7 +4,7 @@
 	这是一个超简单好用的，云端在线代码生成器；
 	目前支持Javaweb代码生成，一键生成Service,Dao,Entity等等，快来试试吧，编码效率会空前提高呢~；
 	未来还会拓展PHP，JavaScript，HTML，SQL，Android，IOS，LinuxShell等语言代码的一键生成，GenCode的目标是——最懒程序员！
-
+	项目预览:gencode.duapp.com
 解析引擎层次
 >
 	com.cheney.gencode.enums:					通用枚举
