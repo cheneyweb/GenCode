@@ -5,8 +5,8 @@
 	目前支持Javaweb代码生成，一键生成Service,Dao,Entity等等，快来试试吧，编码效率会空前提高呢~；
 	未来还会拓展PHP，JavaScript，HTML，SQL，Android，IOS，LinuxShell等语言代码的一键生成，GenCode的目标是——最懒程序员！
 
-项目预览(Project Preview)
-	[演示链接:http://gencode.duapp.com](http://gencode.duapp.com) 
+项目预览(Project Preview):
+	[演示链接->http://gencode.duapp.com](http://gencode.duapp.com) 
 
 解析引擎层次
 >
