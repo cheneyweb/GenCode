@@ -3,7 +3,7 @@
 >
 	这是一个超简单好用的，云端在线代码生成器；
 	目前支持Javaweb代码生成，一键生成Service,Dao,Entity等等，快来试试吧，编码效率会空前提高呢~；
-	未来还会拓展PHP，JavaScript，HTML，SQL，Android，IOS，LinuxShell等语言代码的一键生成，GenCode的目标是——最懒程序员！
+	未来还会拓展PHP，JavaScript，HTML，SQL，Android，IOS，Shell等代码的一键生成，GenCode的目标是——最懒程序员！
 
 项目预览(Project Preview):
 	[演示链接->http://gencode.duapp.com](http://gencode.duapp.com) 
@@ -39,7 +39,7 @@
 		html（生成器前端文件）
 	resources/templates/
 		code(生成代码模板文件)
-		layout（VM基础布局文件）
+		layout（VM基础布局模板文件）
 	resources/application.properties（SpringBoot配置文件）
 	resources/toolbox.xml（VM的工具库配置文件，暂未使用）
 注意事项
